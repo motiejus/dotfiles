@@ -16,7 +16,7 @@ set formatoptions+=j history=1000 tabpagemax=50 sessionoptions-=options
 
 let g:gutentags_enabled = 0
 let g:gutentags_generate_on_new = 0
-let g:gutentags_cache_dir = '/Users/motiejus/.vim/tags'
+let g:gutentags_cache_dir = '/Users/motiejus/.vim/ctags'
 let b:gutentags_file_list_command = 'git ls-files'
 
 " html
