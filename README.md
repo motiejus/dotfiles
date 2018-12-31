@@ -1,6 +1,6 @@
 dotfiles
 --------
 
-    $ git clone --recursive https://github.com/motiejus/dotfiles .dotfiles
+    $ git clone --recursive git@github.com:motiejus/dotfiles.git .dotfiles
     $ cd .dotfiles
     $ stow bash ctags tmux vim
