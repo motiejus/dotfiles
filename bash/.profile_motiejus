@@ -1,0 +1,33 @@
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
+export LSCOLORS=ExFxBxDxCxegedabagacad
+export CLICOLOR=y
+export HISTSIZE=50000
+export UNISONLOCALHOSTNAME=motiejus-MBP.lan
+export GOTRACEBACK=all
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+#export GOPATH=$HOME/.gopath:$HOME/.go-code
+export GOPATH=$HOME/.gopath
+export PATH=$PATH:$GOPATH/bin:$HOME/bin:$HOME/.cargo/bin
+export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
+
+arc() {
+    if [[ -z "${d_active:-}" ]]; then
+        d
+    fi
+    env arc "$@"
+}
+
+toolshed() {
+    docker run --init --name toolshed -v `pwd`:/x -w /x -ti --rm motiejus/toolshed "$@"
+}
+
+. $HOME/.gg.sh
+
+alias l='echo -n ł | pbcopy'
+alias cerberus='cerberus --no-status-page'
+
+alias glide='time glide'
