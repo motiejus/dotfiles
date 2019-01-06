@@ -30,6 +30,7 @@ au BufRead,BufNewFile *.pp setfiletype puppet
 au FileType puppet setlocal ts=2 sw=2 sws=2 syntax=ruby
 au FileType puppet let g:gutentags_enabled = 1
 au FileType puppet let b:gutentags_file_list_command = 'git ls-files *.pp'
+au FileType puppet nnoremap <C-]> :call search('\s', 'b')<cr> :call search('\w')<cr>vE<C-]>
 
 " avro
 au BufRead,BufNewFile *.avsc setfiletype json
