@@ -1,3 +1,4 @@
 *.sw[op]
 /vim/.vim/ctags/
 /vim/.vim/view/
+vim/.vim/.netrwhist
