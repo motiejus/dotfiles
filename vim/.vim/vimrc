@@ -38,7 +38,6 @@ au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sws=2
 " go
 au FileType go setlocal noet
 au FileType go nnoremap <C-]> :GoDef<CR>
-au FileType go nnoremap <C-t> <C-o>
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_template_autocreate = 0
 
