@@ -8,8 +8,8 @@ export UNISONLOCALHOSTNAME=motiejus-MBP.lan
 export GOTRACEBACK=all
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
-#export GOPATH=$HOME/.gopath:$HOME/.go-code
-export GOPATH=$HOME/.gopath
+export GOPATH=$HOME/.gopath:$HOME/.go-code
+#export GOPATH=$HOME/.gopath
 export PATH=$PATH:$GOPATH/bin:$HOME/bin:$HOME/.cargo/bin
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/

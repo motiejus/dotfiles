@@ -46,3 +46,6 @@ au FileType go let g:go_template_autocreate = 0
 au FileType rust let g:rustfmt_autosave = 1
 au FileType rust setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
 au BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+
+" sql
+let g:omni_sql_no_default_maps = 1
