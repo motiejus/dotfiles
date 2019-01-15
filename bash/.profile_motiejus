@@ -11,7 +11,7 @@ export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export GOPATH=$HOME/.gopath:$HOME/.go-code
 #export GOPATH=$HOME/.gopath
-export PATH=$PATH:$GOPATH/bin:$HOME/bin:$HOME/.cargo/bin
+export PATH=$HOME/.gopath/bin:/usr/local/opt/sqlite/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
 
