@@ -8,6 +8,7 @@ export UNISONLOCALHOSTNAME=motiejus-MBP.lan
 export GOTRACEBACK=all
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export GOPATH=$HOME/.gopath:$HOME/.go-code
 #export GOPATH=$HOME/.gopath
 export PATH=$PATH:$GOPATH/bin:$HOME/bin:$HOME/.cargo/bin
@@ -29,5 +30,3 @@ toolshed() {
 
 alias l='echo -n ł | pbcopy'
 alias cerberus='cerberus --no-status-page'
-
-alias glide='time glide'
