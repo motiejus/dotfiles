@@ -30,3 +30,4 @@ toolshed() {
 
 alias l='echo -n ł | pbcopy'
 alias cerberus='cerberus --no-status-page'
+alias grep='/usr/local/bin/ggrep'
