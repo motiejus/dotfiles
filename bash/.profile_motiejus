@@ -26,6 +26,11 @@ toolshed() {
     docker run --init --name toolshed -v `pwd`:/x -w /x -ti --rm motiejus/toolshed "$@"
 }
 
+ckdir() {
+    mkdir -p "$@"
+    cd "$@"
+}
+
 . $HOME/.gg.sh
 
 alias l='echo -n ł | pbcopy'
