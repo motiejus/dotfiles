@@ -1,6 +1,9 @@
 #
 # Change to the directory of the specified Go package name.
 #
+
+maxdepth=3
+
 gg() {
 	paths=($(g "$@"))
 	path_index=0
@@ -25,7 +28,7 @@ gg() {
 # Print the directories of the specified Go package name.
 #
 g() {
-	local pkg_candidates="$((cd $GOPATH/src && find . -mindepth 1 -maxdepth 4 -type d \( -path "*/$1" -or -path "*/$1.git" \) -and -not -path '*/vendor/*' -print) | sed 's/^\.\///g')"
+    local pkg_candidates="$((cd $GOPATH/src && find . -mindepth 1 -maxdepth ${maxdepth} -type d \( -path "*/$1" -or -path "*/$1.git" \) -and -not -path '*/vendor/*' -print) | sed 's/^\.\///g')"
 	echo "$pkg_candidates"
 }
 #
@@ -38,7 +41,7 @@ _g_complete()
     local prev
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    COMPREPLY=( $(compgen -W "$(for f in $(find "$GOPATH/src" -mindepth 1 -maxdepth 4 -type d -name "${cur}*" ! -name '.*' ! -path '*/.git/*' ! -path '*/test/*' ! -path '*/Godeps/*' ! -path '*/examples/*' ! -path '*/vendor/*'); do echo "${f##*/}"; done)" --  "$cur") )
+    COMPREPLY=( $(compgen -W "$(for f in $(find "$GOPATH/src" -mindepth 1 -maxdepth ${maxdepth} -type d -name "${cur}*" ! -name '.*' ! -path '*/.git/*' ! -path '*/test/*' ! -path '*/Godeps/*' ! -path '*/examples/*' ! -path '*/vendor/*'); do echo "${f##*/}"; done)" --  "$cur") )
     return 0
 }
 complete -F _g_complete g

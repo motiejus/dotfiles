@@ -34,5 +34,16 @@ ckdir() {
 . $HOME/.gg.sh
 
 alias l='echo -n ł | pbcopy'
-alias cerberus='cerberus --no-status-page'
+alias cerberus='cerberus --zone phx2 --no-status-page'
 alias grep='/usr/local/bin/ggrep'
+
+alias hosts='cat $HOME/x/hosts'
+
+# lock your screen
+_motiejus() {
+  local sleeptime=$((cat .motiejus 2>/dev/null || echo -n 0; echo +0.1) | bc)
+  echo -n $sleeptime > .motiejus
+  echo $sleeptime
+}
+
+#sleep $(_motiejus)
