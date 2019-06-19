@@ -1,6 +1,6 @@
 syntax on
 filetype plugin indent on
-set et ts=4 sw=4 nu hlsearch ruler ignorecase smartcase modeline bg=dark incsearch
+set et ts=4 sw=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
 set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m
 
 if has("patch-8.1-0360")
