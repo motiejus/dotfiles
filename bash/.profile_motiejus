@@ -23,7 +23,11 @@ arc() {
 }
 
 toolshed() {
-    docker run --init --name toolshed -v `pwd`:/x -w /x -ti --rm motiejus/toolshed "$@"
+    local ti="-i"
+    if [[ -t 0 ]]; then
+        local ti="-ti"
+    fi
+    docker run --init --name toolshed -v `pwd`:/x -w /x "$ti" --rm motiejus/toolshed "$@"
 }
 
 ckdir() {
