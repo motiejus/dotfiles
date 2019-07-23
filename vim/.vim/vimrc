@@ -19,6 +19,14 @@ let g:gutentags_generate_on_new = 0
 let g:gutentags_cache_dir = '/Users/motiejus/.vim/ctags'
 let b:gutentags_file_list_command = 'git ls-files'
 
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
+nnoremap <C-]> :ALEGoToDefinition<CR>
+
 " html
 au FileType html setlocal ts=2 sw=2 sws=2
 
@@ -36,16 +44,14 @@ au FileType puppet let b:gutentags_file_list_command = 'git ls-files *.pp'
 au FileType puppet nnoremap <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>vE<C-]>
 "au FileType puppet nnoremap <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>:call search('[^a-z:]\|$', 's')<cr>hv`'<C-]>
 
-
 " avro
 au BufRead,BufNewFile *.avsc setfiletype json
 au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sws=2
 
 " go
 au FileType go setlocal noet
-au FileType go nnoremap <C-]> :GoDef<CR>
-au FileType go let g:go_fmt_command = "goimports"
-au FileType go let g:go_template_autocreate = 0
+au FileType go let b:ale_linters = ['golangci-lint', 'gopls']
+au FileType go let b:ale_fixers = ['goimports']
 
 " rust
 au FileType rust let g:rustfmt_autosave = 1
