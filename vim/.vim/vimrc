@@ -24,8 +24,8 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
-let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
-nnoremap <C-]> :ALEGoToDefinition<CR>
+let g:ale_set_highlights = 0
+let g:ale_set_signs = 0
 
 " html
 au FileType html setlocal ts=2 sw=2 sws=2
@@ -52,6 +52,7 @@ au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sws=2
 au FileType go setlocal noet
 au FileType go let b:ale_linters = ['golangci-lint', 'gopls']
 au FileType go let b:ale_fixers = ['goimports']
+au FileType go nnoremap <C-]> :ALEGoToDefinition<CR>
 
 " rust
 au FileType rust let g:rustfmt_autosave = 1
