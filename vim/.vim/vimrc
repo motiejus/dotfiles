@@ -19,14 +19,6 @@ let g:gutentags_generate_on_new = 0
 let g:gutentags_cache_dir = '/Users/motiejus/.vim/ctags'
 let b:gutentags_file_list_command = 'git ls-files'
 
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-let g:ale_set_highlights = 0
-let g:ale_set_signs = 0
-
 " html
 au FileType html setlocal ts=2 sw=2 sws=2
 
@@ -50,9 +42,9 @@ au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sws=2
 
 " go
 au FileType go setlocal noet
-au FileType go let b:ale_linters = ['golangci-lint', 'gopls']
-au FileType go let b:ale_fixers = ['goimports']
-au FileType go nnoremap <C-]> :ALEGoToDefinition<CR>
+au FileType go nnoremap <C-]> :GoDef<CR>
+au FileType go let g:go_fmt_command = "goimports"
+au FileType go let g:go_template_autocreate = 0
 
 " rust
 au FileType rust let g:rustfmt_autosave = 1
