@@ -8,8 +8,6 @@ export UNISONLOCALHOSTNAME=motiejus-MBP.lan
 export GOTRACEBACK=all
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
-export GOPATH=$HOME/.go-code
-
 eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=""
 export PATH=/usr/local/opt/sqlite/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
@@ -44,11 +42,3 @@ alias grep='/usr/local/bin/ggrep'
 
 alias hosts='cat $HOME/x/hosts'
 
-# lock your screen
-_motiejus() {
-  local sleeptime=$((cat .motiejus 2>/dev/null || echo -n 0; echo +0.1) | bc)
-  echo -n $sleeptime > .motiejus
-  echo $sleeptime
-}
-
-#sleep $(_motiejus)
