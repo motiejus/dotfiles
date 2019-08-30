@@ -2,8 +2,10 @@
 # Change to the directory of the specified Go package name.
 #
 
-maxdepth=4
-_gopath=$HOME/.go-code/src/code.uber.internal
+maxdepth=2
+_gopath=$HOME/.go-code
+_suffix1=src/code.uber.internal
+_suffix2=src/code.uber.internal/infra/crane-exp.git/src
 
 gg() {
 	paths=($(g "$@"))
@@ -29,7 +31,7 @@ gg() {
 # Print the directories of the specified Go package name.
 #
 g() {
-    local pkg_candidates="$((cd $_gopath && find . -mindepth 1 -maxdepth ${maxdepth} -type d \( -path "*/$1" -or -path "*/$1.git" \) -and -not -path '*/vendor/*' -print) | sed 's/^\.\///g')"
+    local pkg_candidates="$((cd $_gopath && find $_suffix1 $_suffix2 -mindepth 1 -maxdepth ${maxdepth} -type d \( -path "*/$1" -or -path "*/$1.git" \) -and -not -path '*/vendor/*' -print) | sed 's/^\.\///g')"
 	echo "$pkg_candidates" | awk '{print length, $0 }' | sort -n | awk '{print $2}'
 }
 #
@@ -42,7 +44,7 @@ _g_complete()
     local prev
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    COMPREPLY=( $(compgen -W "$(for f in $(find "$_gopath" -mindepth 1 -maxdepth ${maxdepth} -type d -name "${cur}*" ! -name '.*' ! -path '*/.git/*' ! -path '*/test/*' ! -path '*/Godeps/*' ! -path '*/examples/*' ! -path '*/vendor/*'); do echo "${f##*/}"; done)" --  "$cur") )
+    COMPREPLY=( $(compgen -W "$(for f in $(find "$_gopath/$_suffix1" "$_gopath/$_suffix2" -mindepth 1 -maxdepth ${maxdepth} -type d -name "${cur}*" ! -name '.*' ! -path '*/.git/*' ! -path '*/test/*' ! -path '*/Godeps/*' ! -path '*/examples/*' ! -path '*/vendor/*'); do echo "${f##*/}"; done)" --  "$cur") )
     return 0
 }
 complete -F _g_complete g
