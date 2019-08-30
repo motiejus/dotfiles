@@ -2,7 +2,7 @@
 # Change to the directory of the specified Go package name.
 #
 
-maxdepth=2
+maxdepth=3
 _gopath=$HOME/.go-code
 _suffix1=src/code.uber.internal
 _suffix2=src/code.uber.internal/infra/crane-exp.git/src
