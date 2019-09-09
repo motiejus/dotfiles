@@ -11,9 +11,18 @@ export VAGRANT_DEFAULT_PROVIDER=virtualbox
 eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=""
 export GOPATH=$HOME/.gopath
-export PATH=/usr/local/opt/sqlite/bin:$HOME/bin:$HOME/.cargo/bin:$GOPATH/bin:$PATH
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
 #export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
+
+for path in \
+    $HOME/bin \
+    $GOPATH/bin \
+    /usr/local/opt/sqlite/bin \
+    ; do
+    if [[ ! $PATH =~ $path ]]; then
+        export PATH=$path:$PATH
+    fi
+done
 
 arc() {
     if [[ -z "${d_active:-}" ]]; then
