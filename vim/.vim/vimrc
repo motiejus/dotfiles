@@ -1,7 +1,7 @@
 syntax on
 filetype plugin indent on
 set et ts=4 sw=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
-set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m
+set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m backspace=2
 
 if has("patch-8.1-0360")
   set diffopt+=algorithm:patience
