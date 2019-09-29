@@ -50,6 +50,7 @@ ckdir() {
 alias l='echo -n ł | pbcopy'
 alias cerberus='cerberus --zone phx2 --no-status-page'
 alias grep='/usr/local/bin/ggrep'
+alias vim=/usr/local/bin/vim
+alias vimdiff=/usr/local/bin/vimdiff
 
 alias hosts='cat $HOME/x/hosts'
-
