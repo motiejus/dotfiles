@@ -46,7 +46,7 @@ ckdir() {
 }
 
 nman() {
-    nvim +"Man $@" +on
+    nvim +"Man $*" +on
 }
 
 . $HOME/.gg.sh
