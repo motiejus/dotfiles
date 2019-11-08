@@ -45,6 +45,10 @@ ckdir() {
     cd "$@"
 }
 
+nman() {
+    nvim +"Man $@" +on
+}
+
 . $HOME/.gg.sh
 
 alias l='echo -n ł | pbcopy'
