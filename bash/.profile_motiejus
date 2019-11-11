@@ -13,7 +13,7 @@ export DIRENV_LOG_FORMAT=""
 export GOPATH=$HOME/.gopath
 export USE_SYSTEM_GO=1
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
-#export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
+export GO111MODULE=on
 
 for path in \
     $HOME/bin \
