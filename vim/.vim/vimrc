@@ -1,11 +1,14 @@
 syntax on
 filetype plugin indent on
 set et ts=4 sw=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
-set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m backspace=2
+set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m backspace=2 nojs
 
 if has("patch-8.1-0360")
   set diffopt+=algorithm:patience
 endif
+
+" uh oh, truly custom mappings
+nnoremap <Leader>\ gqj
 
 " inspired by vim-sensible
 set autoindent smarttab nrformats-=octal

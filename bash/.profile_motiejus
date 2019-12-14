@@ -14,6 +14,9 @@ export GOPATH=$HOME/.gopath
 export USE_SYSTEM_GO=1
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
 export GO111MODULE=on
+export LDA_ENABLED=0
+
+ulimit -Sn 10240
 
 for path in \
     $HOME/bin \
@@ -56,5 +59,3 @@ alias cerberus='cerberus --zone phx2 --no-status-page'
 alias grep='/usr/local/bin/ggrep'
 alias vim=/usr/local/bin/vim
 alias vimdiff=/usr/local/bin/vimdiff
-
-alias hosts='cat $HOME/x/hosts'
