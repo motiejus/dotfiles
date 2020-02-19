@@ -4,7 +4,6 @@ export PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\]
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export CLICOLOR=y
 export HISTSIZE=50000
-export UNISONLOCALHOSTNAME=motiejus-MBP.lan
 export GOTRACEBACK=all
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
@@ -20,20 +19,11 @@ ulimit -Sn 10240
 
 for path in \
     $HOME/bin \
-    $GOPATH/bin \
-    /usr/local/opt/sqlite/bin \
     ; do
     if [[ ! $PATH =~ $path ]]; then
         export PATH=$path:$PATH
     fi
 done
-
-arc() {
-    if [[ -z "${d_active:-}" ]]; then
-        d
-    fi
-    env arc "$@"
-}
 
 toolshed() {
     local ti="-i"
@@ -55,7 +45,16 @@ nman() {
 . $HOME/.gg.sh
 
 alias l='echo -n ł | pbcopy'
+
+export UBER_PROFILE_UID=motiejus
+export UBER_LDAP_UID=motiejus
 alias cerberus='cerberus --zone phx2 --no-status-page'
-alias grep='/usr/local/bin/ggrep'
-alias vim=/usr/local/bin/vim
-alias vimdiff=/usr/local/bin/vimdiff
+
+if [[ $uname == Darwin ]]; then
+    alias grep='/usr/local/bin/ggrep'
+    alias vim=/usr/local/bin/vim
+    alias vimdiff=/usr/local/bin/vimdiff
+else
+    export UBER_HOME=/home/motiejus/Uber
+    export UBER_OWNER=motiejus@uber.com
+fi
