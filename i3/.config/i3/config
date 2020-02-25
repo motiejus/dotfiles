@@ -155,37 +155,26 @@ bar {
 }
 
 # motiejus tuning
-bindsym $mod+Ctrl+q exec i3lock
-
 new_window 1pixel
+exec --no-startup-id xsetroot -solid "#008080"
 exec --no-startup-id nm-applet &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id volumeicon &
 exec --no-startup-id synclient TapButton3=2
 exec --no-startup-id synclient HorizTwoFingerScroll=1
-
-# move focused window
+bindsym $mod+Ctrl+q exec i3lock
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 bindsym $mod+Shift+h move left
-
-# change focus
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+h focus left
-
-## split in horizontal orientation
 bindsym $mod+b split h
-# split in vertical orientation
 bindsym $mod+v split v
-
-# Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
-
-# Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id brightness up
 bindsym XF86MonBrightnessDown exec --no-startup-id brightness down
