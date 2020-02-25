@@ -160,8 +160,7 @@ exec --no-startup-id xsetroot -solid "#008080"
 exec --no-startup-id nm-applet &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id volumeicon &
-exec --no-startup-id synclient TapButton3=2
-exec --no-startup-id synclient HorizTwoFingerScroll=1
+exec --no-startup-id synclient TapButton3=2 HorizTwoFingerScroll=1
 
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
