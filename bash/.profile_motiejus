@@ -10,7 +10,6 @@ export VAGRANT_DEFAULT_PROVIDER=virtualbox
 eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=""
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
-export GO111MODULE=on
 export EDITOR=vim
 export MONOREPO_GOPATH_MODE=1
 
