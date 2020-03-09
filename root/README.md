@@ -8,6 +8,7 @@ root directory
 
 This is the symmetric encryption key for `git-crypt`:
 
+```
 -----BEGIN PGP MESSAGE-----
 
 jA0ECQMCWhpsUYzqWGDq0sAAAYTR9moDry/FpymMu2OhEERTLumZdCsytGtZFBCJ
@@ -17,3 +18,4 @@ ebv4WpgncbBKQhT2RqZV4+DR4NYqmZqz1A4TKZx5b1ViaZKjnQwwkL2TtcSPGsU4
 cJk5Si6XZ5ItOmFBDjHPCnKt
 =ADT3
 -----END PGP MESSAGE-----
+```
