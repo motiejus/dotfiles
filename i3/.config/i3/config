@@ -174,7 +174,7 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Tab workspace next
-bindsym $mod+Ctrl+q exec --no-startup-id i3lock
+bindsym $mod+Ctrl+q exec --no-startup-id i3lock --ignore-empty-password --pointer win --color=3a6ea5
 bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show; floating toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%; exec --no-startup-id pactl set-sink-volume 1 +5%
