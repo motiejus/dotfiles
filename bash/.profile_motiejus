@@ -53,4 +53,8 @@ else
     export UBER_OWNER=motiejus@uber.com
 fi
 
-#export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh
+bazel() {
+    arg1=$1
+    shift
+    env bazel "$arg1" --color=yes "$@" 3>&1 1>&2 2>&3 | grep -Ev 'DEBUG: .*401 Unauthorized$'
+}
