@@ -1,6 +1,6 @@
 [Unit]
 Description=Home Assistant
-Requires=network-online.target
+Requires=network-online.target var-lib-containers.mount
 After=network-online.target var-lib-containers.mount mosquitto.service sys-subsystem-net-devices-eth0.3.device
 Requires=mosquitto.service sys-subsystem-net-devices-eth0.3.device
 
