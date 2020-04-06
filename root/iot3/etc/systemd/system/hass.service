@@ -1,15 +1,16 @@
 [Unit]
 Description=Home Assistant
 Requires=network-online.target
-After=network-online.target var-lib-rkt.mount mosquitto.service sys-subsystem-net-devices-eth0.3.device
+After=network-online.target var-lib-rkt.mount var-lib-containers.mount mosquitto.service sys-subsystem-net-devices-eth0.3.device
 Requires=var-lib-rkt.mount mosquitto.service sys-subsystem-net-devices-eth0.3.device
 
 [Service]
 Slice=machine.slice
 Delegate=true
 MemoryLimit=2G
-ExecStart=/usr/bin/rkt --insecure-options=image run --volume hass,kind=host,source=/bigdisk/hass --mount volume=hass,target=/config --net=host docker://homeassistant/raspberrypi3-64-homeassistant:0.104.2
-ExecStopPost=/usr/bin/rkt gc --mark-only
+ExecStartPre=-/usr/bin/podman rm hass
+ExecStart=/usr/bin/podman run -v /bigdisk/hass:/config --net=host --name hass docker.io/homeassistant/home-assistant:0.107.7
+ExecStop=/usr/bin/podman rm hass
 KillMode=mixed
 Restart=always
 
