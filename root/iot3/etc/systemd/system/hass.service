@@ -8,9 +8,9 @@ Requires=var-lib-rkt.mount mosquitto.service sys-subsystem-net-devices-eth0.3.de
 Slice=machine.slice
 Delegate=true
 MemoryLimit=2G
-ExecStartPre=-/usr/bin/podman rm hass
-ExecStart=/usr/bin/podman run -v /bigdisk/hass:/config --net=host --name hass docker.io/homeassistant/home-assistant:0.107.7
-ExecStop=/usr/bin/podman rm hass
+ExecStartPre=-/usr/bin/podman rm %n
+ExecStart=/usr/bin/podman run -v /bigdisk/hass:/config --net=host --name %n docker.io/homeassistant/home-assistant:0.107.7
+ExecStop=/usr/bin/podman rm %n
 KillMode=mixed
 Restart=always
 
