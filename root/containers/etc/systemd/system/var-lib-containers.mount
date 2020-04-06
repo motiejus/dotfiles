@@ -1,0 +1,8 @@
+[Unit]
+Description=var-lib-containers on bigdisk
+
+[Mount]
+What=/dev/disk/by-uuid/2693cfea-2c8d-498b-a8bd-78fb986d5504
+Where=/var/lib/containers
+Type=btrfs
+Options=subvol=containers,defaults
