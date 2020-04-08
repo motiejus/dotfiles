@@ -38,20 +38,12 @@ nman() {
 . $HOME/.gg.sh
 . $HOME/.gopathmodeFunc.bash
 
-alias l='echo -n ł | pbcopy'
-
 export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
 alias cerberus='cerberus --zone phx2 --no-status-page'
 
-if [[ $uname == Darwin ]]; then
-    alias grep='/usr/local/bin/ggrep'
-    alias vim=/usr/local/bin/vim
-    alias vimdiff=/usr/local/bin/vimdiff
-else
-    export UBER_HOME=/home/motiejus/Uber
-    export UBER_OWNER=motiejus@uber.com
-fi
+export UBER_HOME=/home/motiejus/Uber
+export UBER_OWNER=motiejus@uber.com
 
 bazel() {
     arg1=$1
