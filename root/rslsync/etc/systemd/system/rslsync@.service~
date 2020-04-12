@@ -11,13 +11,5 @@ Restart=always
 ExecStartPre=/etc/resilio-sync/init_user_config.sh
 ExecStart=/usr/bin/rslsync --nodaemon --config /home/%i/.config/resilio-sync/config.json
 
-# Hardening
-ProtectSystem=full
-PrivateTmp=true
-SystemCallArchitectures=native
-MemoryDenyWriteExecute=true
-NoNewPrivileges=true
-#ProtectHome=yes
-
 [Install]
 WantedBy=multi-user.target
