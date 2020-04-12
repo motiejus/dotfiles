@@ -20,6 +20,7 @@ NoNewPrivileges=true
 ProtectControlGroups=true
 ProtectKernelModules=true
 ProtectKernelTunables=true
+RestrictAddressFamilies=AF_INET AF_INET6
 
 # Paths
 TemporaryFileSystem=/home
