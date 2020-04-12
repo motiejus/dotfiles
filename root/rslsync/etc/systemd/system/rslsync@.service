@@ -20,9 +20,10 @@ NoNewPrivileges=true
 ProtectControlGroups=true
 ProtectKernelModules=true
 ProtectKernelTunables=true
+PrivateDevices=true
 
 # Paths
-TemporaryFileSystem=/home
+ProtectHome=tmpfs
 BindPaths=/home/%i/.config/resilio-sync
 BindPaths=/bigdisk/annex2/R-Camera
 
