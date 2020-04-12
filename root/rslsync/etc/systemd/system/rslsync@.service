@@ -12,13 +12,14 @@ ExecStartPre=/etc/resilio-sync/init_user_config.sh
 ExecStart=/usr/bin/rslsync --nodaemon --config /home/%i/.config/resilio-sync/config.json
 
 # Hardening
-ProtectSystem=full
+ProtectSystem=strict
 PrivateTmp=true
 SystemCallArchitectures=native
 MemoryDenyWriteExecute=true
 NoNewPrivileges=true
 TemporaryFileSystem=/home
 BindPaths=/home/%i/.config/resilio-sync
+BindPaths=/bigdisk/annex2/R-Camera
 
 [Install]
 WantedBy=multi-user.target
