@@ -17,7 +17,8 @@ PrivateTmp=true
 SystemCallArchitectures=native
 MemoryDenyWriteExecute=true
 NoNewPrivileges=true
-#ProtectHome=yes
+TemporaryFileSystem=/home
+BindPaths=/home/%i/.config/resilio-sync
 
 [Install]
 WantedBy=multi-user.target
