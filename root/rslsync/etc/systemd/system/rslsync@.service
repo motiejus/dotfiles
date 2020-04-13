@@ -21,6 +21,15 @@ ProtectControlGroups=true
 ProtectKernelModules=true
 ProtectKernelTunables=true
 PrivateDevices=true
+CapabilityBoundingSet=
+PrivateUsers=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+RestrictRealtime=true
+LockPersonality=true
+RemoveIPC=true
 
 # Paths
 ProtectHome=tmpfs
