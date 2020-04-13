@@ -4,7 +4,7 @@ root directory
     $ git clone --recursive git@github.com:motiejus/dotfiles.git .dotfiles
     $ cd .dotfiles/root/
     $ git crypt unlock <(gpg -d <(sed -n '/BEGIN PGP/,/END PGP/ p' README.md))
-    $ stow -t / iot3
+    $ make install
 
 This is the symmetric encryption key for `git-crypt`:
 
