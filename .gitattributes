@@ -1,5 +1,7 @@
-root/postfix/etc/postfix/sasl_passwd filter=git-crypt diff=git-crypt
+# postfix
+sasl_passwd filter=git-crypt diff=git-crypt
 
-root/iot3/etc/nginx/letsencrypt/account.key filter=git-crypt diff=git-crypt
-root/iot3/etc/nginx/letsencrypt/dhparam.pem filter=git-crypt diff=git-crypt
-root/iot3/etc/nginx/letsencrypt/domain.key filter=git-crypt diff=git-crypt
+# nginx/letsencrypt
+account.key filter=git-crypt diff=git-crypt
+dhparam.pem filter=git-crypt diff=git-crypt
+domain.key filter=git-crypt diff=git-crypt
