@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+pushd /etc/nginx/letsencrypt
+acme-tiny --disable-check --account-key account.key --csr domain.csr --acme-dir /var/www/challenges/ > signed_chain.crt.tmp
+mv signed_chain.crt.tmp signed_chain.crt
+systemctl reload nginx
+popd
