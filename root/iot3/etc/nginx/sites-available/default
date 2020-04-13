@@ -1,0 +1,58 @@
+map $sent_http_content_type $charset {
+    ~^text/   utf-8;
+}
+
+server {
+    listen [::]:80 ipv6only=off;
+    error_page 404 = @https;
+
+    location /.well-known/acme-challenge/ {
+        alias /var/www/challenges/;
+        try_files $uri =404;
+    }
+
+    location / {
+        try_files $uri @https;
+    }
+
+    location @https {
+        return 302 https://vno1.jakstys.lt$request_uri;
+    }
+
+    # the block below is shared on both http and https
+    server_name vno1.jakstys.lt;
+    root /bigdisk/public_html;
+    types {
+        text/plain md;
+    }
+    include /etc/nginx/mime.types;
+    charset       $charset;
+    charset_types *;
+}
+
+server {
+    listen [::]:443 http2 ssl ipv6only=off;
+    fancyindex on;
+    fancyindex_exact_size off;
+
+    ssl_certificate /etc/nginx/letsencrypt/signed_chain.crt;
+    ssl_certificate_key /etc/nginx/letsencrypt/domain.key;
+    ssl_dhparam /etc/nginx/letsencrypt/dhparam.pem;
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
+    ssl_session_tickets off;
+    ssl_protocols TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+
+    # the block below is shared on both http and https
+    server_name vno1.jakstys.lt;
+    root /bigdisk/public_html;
+    types {
+        text/plain md;
+    }
+    include /etc/nginx/mime.types;
+    charset       $charset;
+    charset_types *;
+}
