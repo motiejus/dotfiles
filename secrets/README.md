@@ -2,9 +2,9 @@ root directory
 --------------
 
     $ git clone --recursive git@github.com:motiejus/dotfiles.git .dotfiles
-    $ cd .dotfiles/root/
+    $ cd .dotfiles/secrets/
     $ git crypt unlock <(gpg -d <(sed -n '/BEGIN PGP/,/END PGP/ p' README.md))
-    $ make install
+    $ make -C $(hostname) install
 
 This is the symmetric encryption key for `git-crypt`:
 
