@@ -30,5 +30,7 @@ RestrictNamespaces=true
 RestrictRealtime=true
 LockPersonality=true
 
+X-jobctl-managed=true
+
 [Install]
 WantedBy=multi-user.target
