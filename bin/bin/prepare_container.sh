@@ -11,7 +11,7 @@ prepare_container() {
     if [[ -d "$dir" ]]; then
         if [[ -f "$dir/.extract_done" ]]; then
             echo "$dir already has the filesystem extracted"
-            return
+            exit 0
         fi
 
         if [[ ! -f "$dir/.extract_started" ]]; then

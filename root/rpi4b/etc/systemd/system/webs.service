@@ -1,0 +1,34 @@
+[Unit]
+Description=Some isolated web service
+After=network.target network-online.target webs-prep.service
+Requires=webs-prep.service
+
+[Service]
+Type=simple
+RestartSec=3
+Restart=always
+ExecStart=/usr/local/bin/python3 -m http.server
+
+# Hardening
+RootDirectory=/bigdisk/python3
+DynamicUser=true
+PrivateUsers=true
+MountAPIVFS=true
+
+# Misc hardening
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+PrivateDevices=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ProtectHostname=true
+RestrictNamespaces=true
+RestrictRealtime=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
