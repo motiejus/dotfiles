@@ -2,7 +2,7 @@ root directory
 --------------
 
     $ git clone --recursive git@github.com:motiejus/dotfiles.git .dotfiles
-    $ cd .dotfiles/secrets/
+    $ cd .dotfiles/nonlinks/
     $ git crypt unlock <(gpg -d <(sed -n '/BEGIN PGP/,/END PGP/ p' README.md))
     $ make -C $(hostname) install
 
