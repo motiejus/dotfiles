@@ -5,7 +5,7 @@ container=$1
 
 TMPDIR=/bigdisk/tmp
 CONTAINERDIR=/bigdisk/containers2
-GETIMAGE=/home/motiejus/bin/download-frozen-image-v2.sh
+GETIMAGE=download-frozen-image-v2.sh
 
 log() {
     local arg1=$1
@@ -46,6 +46,16 @@ log "Downloading $container to $tmpdir..."
 log -n "Extracting $tmpdir to $dir... "
 jq -r '.[] | .Layers | .[]' "$tmpdir/manifest.json" | xargs -I{} tar -C "$dir" -xf $tmpdir/{}
 log "done"
+
+log -n "Writing $dir/docker2root_entrypoint.sh and $dir/docker2root_cmd.sh... "
+cfg=$(jq -r '.[].Config' "$tmpdir/manifest.json")
+entrypoint=$(jq -r 'if(.config.Entrypoint == null) then "" else .config.Entrypoint | join(" ") end' "$tmpdir/$cfg")
+cmd=$(jq -r 'if(.config.Cmd == null) then "" else .config.Cmd | join(" ") end' "$tmpdir/$cfg")
+echo -e '#!/bin/sh\n\n'"exec $entrypoint" > "$dir/docker2root_entrypoint.sh"
+echo -e '#!/bin/sh\n\n'"exec $cmd" > "$dir/docker2root_cmd.sh"
+chmod a+x "$dir/docker2root_entrypoint.sh" "$dir/docker2root_cmd.sh"
+log " done"
+
 touch "$dir/.extract_done"
 cleanup
 trap - EXIT
