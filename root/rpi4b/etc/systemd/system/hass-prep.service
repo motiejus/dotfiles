@@ -5,4 +5,4 @@ Requires=bigdisk.mount
 
 [Service]
 Type=oneoff
-ExecStart=/home/motiejus/bin/prepare_container.sh /bigdisk/python3 python:3-alpine
+ExecStart=/usr/local/bin/docker2root homeassistant/home-assistant:0.107.7

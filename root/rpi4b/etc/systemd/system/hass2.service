@@ -1,0 +1,24 @@
+[Unit]
+Description=Home Assistant
+Requires=network-online.target var-lib-containers.mount
+After=network-online.target var-lib-containers.mount mosquitto.service sys-subsystem-net-devices-eth0.3.device
+Requires=mosquitto.service sys-subsystem-net-devices-eth0.3.device
+
+[Service]
+Slice=machine.slice
+MemoryLimit=2G
+ExecStart=/docker2root_entrypoint.sh
+ExecStartPost=/docker2root_cmd.sh
+KillMode=mixed
+Restart=always
+
+# Hardening
+RootDirectory=/bigdisk/containers2/homeassistant/home-assistant:0.107.7
+ProtectSystem=strict
+#DynamicUser=true
+#PrivateUsers=true
+MountAPIVFS=true
+RuntimeDirectory=var/run
+
+[Install]
+WantedBy=multi-user.target
