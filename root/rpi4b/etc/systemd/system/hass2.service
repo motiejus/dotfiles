@@ -15,10 +15,13 @@ Restart=always
 # Hardening
 RootDirectory=/bigdisk/containers2/homeassistant/home-assistant:0.107.7
 ProtectSystem=strict
+MountAPIVFS=true
+TemporaryFileSystem=/var
+BindPaths=/bigdisk/hass:/config:ro
+Environment=S6_READ_ONLY_ROOT=1
+PrivateNetwork=true
 #DynamicUser=true
 #PrivateUsers=true
-MountAPIVFS=true
-RuntimeDirectory=var/run
 
 [Install]
 WantedBy=multi-user.target
