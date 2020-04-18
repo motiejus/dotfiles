@@ -1,0 +1,12 @@
+[Exec]
+Environment=S6_READ_ONLY_ROOT=1
+PrivateUsers=false
+
+[Files]
+ReadOnly=true
+Bind=/bigdisk/hass2:/config
+TemporaryFileSystem=/var
+TemporaryFileSystem=/run
+
+[Network]
+Interface=eth0.3

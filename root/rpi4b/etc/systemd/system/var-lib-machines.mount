@@ -1,0 +1,8 @@
+[Unit]
+Description=var-lib-machines on bigdisk
+
+[Mount]
+What=/dev/disk/by-uuid/2693cfea-2c8d-498b-a8bd-78fb986d5504
+Where=/var/lib/machines
+Type=btrfs
+Options=subvol=machines,defaults
