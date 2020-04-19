@@ -37,6 +37,7 @@ nman() {
 
 . $HOME/.gg.sh
 . $HOME/.gopathmodeFunc.bash
+. $HOME/.bashrc_time.sh
 
 export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
@@ -50,3 +51,4 @@ bazel() {
     shift
     env bazel "$arg1" --color=yes "$@" 3>&1 1>&2 2>&3 | grep -Ev 'DEBUG: .*401 Unauthorized$'
 }
+
