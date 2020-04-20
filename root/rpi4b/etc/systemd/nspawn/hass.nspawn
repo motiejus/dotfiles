@@ -1,12 +1,16 @@
 [Exec]
 Environment=S6_READ_ONLY_ROOT=1
 PrivateUsers=false
+Parameters=/docker2root_entrypoint.sh /docker2root_cmd.sh
+Timezone=copy
+Boot=false
 
 [Files]
 ReadOnly=true
-Bind=/bigdisk/hass2:/config
+Bind=/bigdisk/hass:/config
+Bind=/bigdisk/hass:/config
 TemporaryFileSystem=/var
 TemporaryFileSystem=/run
 
 [Network]
-Interface=eth0.3
+Private=false
