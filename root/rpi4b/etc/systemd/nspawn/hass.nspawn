@@ -5,12 +5,26 @@ Parameters=/docker2root_entrypoint.sh /docker2root_cmd.sh
 Timezone=copy
 Boot=false
 
+#TODO file a pull request to systemd: mount/copy resolv.conf after custom
+#mountpoints are set up.
+#ResolvConf=copy-host
+
 [Files]
 ReadOnly=true
 Bind=/bigdisk/hass:/config
 Bind=/bigdisk/hass:/config
 TemporaryFileSystem=/var
 TemporaryFileSystem=/run
+
+# uncomment this with systemd 245+ (c8f15d76abdc1210875472e30edf9d38b5a15b4f)
+#Overlay=+/etc::/etc
+
+#Remove the belo when the overlay above is uncommented
+TemporaryFileSystem=/var/etc-tmp
+Overlay=+/etc:+/var/etc-tmp:/etc
+
+# TODO see comment about ResolvConf
+Bind=/run/systemd/resolve/resolv.conf:/etc/resolv.conf
 
 [Network]
 Private=false
