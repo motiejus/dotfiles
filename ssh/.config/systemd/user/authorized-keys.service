@@ -1,0 +1,9 @@
+[Unit]
+Description=Download .ssh/authorized_keys
+
+[Service]
+ExecStartPre=mkdir -p %h/.ssh
+ExecStart=/usr/bin/curl -sfo .ssh/authorized_keys https://github.com/motiejus.keys
+
+[Install]
+WantedBy=default.target

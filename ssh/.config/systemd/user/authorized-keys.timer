@@ -1,0 +1,15 @@
+[Unit]
+Description=Download .ssh/authorized_keys
+
+[Service]
+ExecStartPre=mkdir -p %h/.ssh
+ExecStart=/usr/bin/curl -fo .ssh/authorized_keys https://github.com/motiejus.keys
+
+[Timer]
+OnBootSec=5min
+OnCalendar=*-*-* *:00:00
+Persistent=true
+
+[Install]
+WantedBy=default.target
+
