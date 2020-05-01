@@ -1,0 +1,13 @@
+network:
+  version: 2
+  ethernets:
+    wlan0:
+      dhcp4: false
+      dhcp6: false
+      optional: true
+  bridges:
+    br0:
+      interfaces: [ wlan0 ]
+      accept-ra: yes
+      dhcp4: false
+      dhcp6: false
