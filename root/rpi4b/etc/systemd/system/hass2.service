@@ -1,0 +1,33 @@
+[Unit]
+Description=home-assistant
+Wants=network-online.target systemd-resolved.service
+After=network-online.target systemd-resolved.service
+
+[Service]
+ExecStartPre=dockerlike-root hass2 homeassistant/home-assistant:0.107.7
+ExecStartPre=sh -c "jq 'del(.linux.namespaces[]|select(.type==\"network\"))' /var/lib/oci/hass2/config.json | sponge /var/lib/oci/t2/config.json"
+ExecStart=systemd-nspawn \
+          --keep-unit \
+          --machine=hass2 \
+          --capability=CAP_CHOWN \
+          --oci-bundle=/var/lib/oci/%i \
+          --template=/var/lib/oci/%i/rootfs \
+          -U
+KillMode=mixed
+Type=notify
+RestartForceExitStatus=133
+SuccessExitStatus=133
+Slice=machine.slice
+Delegate=yes
+TasksMax=16384
+WatchdogSec=3min
+
+# Enforce a strict device policy, similar to the one nspawn configures when it
+# allocates its own scope unit. Make sure to keep these policies in sync if you
+# change them!
+DevicePolicy=closed
+DeviceAllow=/dev/net/tun rwm
+DeviceAllow=char-pts rw
+
+[Install]
+WantedBy=multi-user.target
