@@ -1,0 +1,46 @@
+#!/bin/bash
+set -euo pipefail
+
+container=$1
+url=$2
+
+TMPDIR=/var/tmp
+CONTAINERDIR=/var/lib/oci
+
+log() {
+    local arg1=$1
+    shift
+    >&2 echo "$arg1" "$*"
+}
+
+dir="$CONTAINERDIR/$container"
+if [[ -d "$dir" ]]; then
+    if [[ -f "$dir/.extract_done" ]]; then
+        log "$dir has the filesystem extracted, quitting successfully"
+        exit 0
+    fi
+
+    log "Deleting btrfs subvolume $dir"
+    btrfs subvolume delete "$dir"
+fi
+log -n "Creating $dir ..."
+mkdir -p "$(dirname "$dir")"
+btrfs subvolume create "$dir"
+log "done"
+
+tmpdir=$(mktemp -d -p "$TMPDIR" $(basename "$container")XXXXX)
+cleanup() {
+    log -n "Removing $tmpdir... "
+    rm -fr "$tmpdir"
+    log "done"
+}
+trap cleanup EXIT
+
+log "Downloading $container to $tmpdir..."
+skopeo copy "$2" "oci:$tmpdir:latest"
+umoci unpack --image "$tmpdir" "$dir"
+log " done"
+
+touch "$dir/.extract_done"
+cleanup
+trap - EXIT
