@@ -4,7 +4,7 @@ set -euo pipefail
 container=$1
 url=$2
 
-TMPDIR=/var/tmp
+TMPDIR=/var/lib/oci/.tmp
 CONTAINERDIR=/var/lib/oci
 
 log() {
@@ -28,6 +28,7 @@ mkdir -p "$(dirname "$dir")"
 btrfs subvolume create "$dir"
 log "done"
 
+mkdir -p "$TMPDIR"
 tmpdir=$(mktemp -d -p "$TMPDIR" $(basename "$container")XXXXX)
 cleanup() {
     log -n "Removing $tmpdir... "

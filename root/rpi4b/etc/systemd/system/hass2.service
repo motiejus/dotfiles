@@ -2,16 +2,18 @@
 Description=home-assistant
 Wants=network-online.target systemd-resolved.service
 After=network-online.target systemd-resolved.service
+RequiresMountsFor=/var/lib/oci /var/lib/machines
 
 [Service]
-ExecStartPre=dockerlike-root hass2 homeassistant/home-assistant:0.107.7
-ExecStartPre=sh -c "jq 'del(.linux.namespaces[]|select(.type==\"network\"))' /var/lib/oci/hass2/config.json | sponge /var/lib/oci/t2/config.json"
+TimeoutStartSec=600
+ExecStartPre=dockerlike-root hass2 docker://homeassistant/home-assistant:0.107.7
+ExecStartPre=sh -c "jq 'del(.linux.namespaces[]|select(.type==\"network\"))' /var/lib/oci/hass2/config.json | sponge /var/lib/oci/hass2/config.json"
 ExecStart=systemd-nspawn \
           --keep-unit \
           --machine=hass2 \
           --capability=CAP_CHOWN \
-          --oci-bundle=/var/lib/oci/%i \
-          --template=/var/lib/oci/%i/rootfs \
+          --oci-bundle=/var/lib/oci/hass2 \
+          --template=/var/lib/oci/hass2/rootfs \
           -U
 KillMode=mixed
 Type=notify
