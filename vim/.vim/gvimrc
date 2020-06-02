@@ -1,4 +1,4 @@
 colorscheme koehler
-set guioptions -=m "menu bar
+"set guioptions -=m "menu bar
 set guioptions -=T "toolbar
 set guioptions -=r "scrollbar
