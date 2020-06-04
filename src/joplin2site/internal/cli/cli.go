@@ -14,6 +14,7 @@ type flags struct {
 }
 
 type App struct {
+	Args   []string
 	Stdin  io.Reader
 	Stdout io.Writer
 	Stderr io.Writer
@@ -21,14 +22,12 @@ type App struct {
 
 func (a *App) Run() error {
 	var opts flags
-	args, err := goflags.Parse(&opts)
+	args, err := goflags.ParseArgs(&opts, a.Args)
 	if err != nil {
 		return err
 	}
 	if len(args) != 0 {
 		return fmt.Errorf("Got unexpected arguments: %q", args)
 	}
-	fmt.Printf("opts: %+v\n", opts)
-
 	return nil
 }

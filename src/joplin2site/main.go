@@ -9,6 +9,7 @@ import (
 
 func main() {
 	a := &cli.App{
+		Args:   os.Args[1:],
 		Stdin:  os.Stdin,
 		Stdout: os.Stdout,
 		Stderr: os.Stderr,
