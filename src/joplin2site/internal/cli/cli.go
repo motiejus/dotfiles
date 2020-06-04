@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"fmt"
@@ -13,13 +13,13 @@ type flags struct {
 	} `positional-args:"yes" required:"yes"`
 }
 
-type app struct {
-	stdin  io.Reader
-	stdout io.Writer
-	stderr io.Writer
+type App struct {
+	Stdin  io.Reader
+	Stdout io.Writer
+	Stderr io.Writer
 }
 
-func (a *app) run() error {
+func (a *App) Run() error {
 	var opts flags
 	args, err := goflags.Parse(&opts)
 	if err != nil {
