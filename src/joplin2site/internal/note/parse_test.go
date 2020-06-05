@@ -13,7 +13,7 @@ func TestParse(t *testing.T) {
 		name     string
 		note     string
 		wantErr  string
-		wantNote JoplinNote
+		wantNote Note
 	}{
 		{
 			name: "ok, has body",
@@ -25,7 +25,7 @@ id: 4c7dd536ce1641afa4df349d87d9d29f
 parent_id: 9e651b478a5a43c196c31719300fee6e
 type_: 1
 `,
-			wantNote: JoplinNote{
+			wantNote: Note{
 				ID:       "4c7dd536ce1641afa4df349d87d9d29f",
 				Title:    "Meta",
 				Body:     "Fonts: https://news.ycombinator.com/item?id=23381513",
@@ -42,7 +42,7 @@ updated_time: 2020-06-04T16:07:19.930Z
 encryption_applied: 0
 type_: 2
 `,
-			wantNote: JoplinNote{
+			wantNote: Note{
 				ID:          "9e651b478a5a43c196c31719300fee6e",
 				Title:       "blog",
 				Body:        "",
@@ -55,7 +55,7 @@ type_: 2
 			note: `blog
 
 bad yaml`,
-			wantErr: "yaml: unmarshal errors:\n  line 3: cannot unmarshal !!str `bad yaml` into note.JoplinNote",
+			wantErr: "yaml: unmarshal errors:\n  line 3: cannot unmarshal !!str `bad yaml` into note.Note",
 		},
 	}
 

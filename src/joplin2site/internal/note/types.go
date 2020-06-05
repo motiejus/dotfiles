@@ -2,8 +2,8 @@ package note
 
 import "time"
 
-// JoplinNote is how Joplin understands the note.
-type JoplinNote struct {
+// Note is how Joplin understands the note.
+type Note struct {
 	ID                   string    `yaml:"id"`
 	ParentID             string    `yaml:"parent_id"`
 	Title                string    `yaml:"-"`
@@ -16,9 +16,9 @@ type JoplinNote struct {
 	Altitude             float64   `yaml:"altitude"`
 	Author               string    `yaml:"author"`
 	SourceUrl            string    `yaml:"source_url"`
-	IsTodo               int       `yaml:"is_todo"`
-	TodoDue              int       `yaml:"todo_due"`
-	TodoCompleted        int       `yaml:"todo_completed"`
+	IsTODO               int       `yaml:"is_todo"`
+	TODODue              int       `yaml:"todo_due"`
+	TODOCompleted        int       `yaml:"todo_completed"`
 	Source               string    `yaml:"source"`
 	SourceApplication    string    `yaml:"source_application"`
 	ApplicationData      string    `yaml:"application_data"`
@@ -29,7 +29,7 @@ type JoplinNote struct {
 	EncryptionApplied    int       `yaml:"encryption_applied"`
 	MarkupLanguage       int       `yaml:"markup_language"`
 	IsShared             int       `yaml:"is_shared"`
-	BodyHtml             string    `yaml:"body_html"`
+	BodyHTML             string    `yaml:"body_html"`
 	// BaseURL is if `body_html` is provided and contains relative URLs, provide the `base_url` parameter too so that all the URLs can be converted to absolute ones. The base URL is basically where the HTML was fetched from, minus the query (everything after the '?'). For example if the original page was `https://stackoverflow.com/search?q=%5Bjava%5D+test`, the base URL is `https://stackoverflow.com/search`.
 	BaseUrl string `yaml:"base_url"`
 	// ImageDataUrl contains an image to attach to the note, in [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) format.

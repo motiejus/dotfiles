@@ -6,15 +6,15 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func Parse(in string) (JoplinNote, error) {
+func Parse(in string) (Note, error) {
 	var title, body, params string
 	titleIdx := strings.Index(in, "\n\n")
 	paramsIdx := strings.LastIndex(in, "\n\n")
 	title, body, params = in[0:titleIdx], in[min(titleIdx+2, paramsIdx):paramsIdx], in[paramsIdx:]
 
-	var note JoplinNote
+	var note Note
 	if err := yaml.Unmarshal([]byte(params), &note); err != nil {
-		return JoplinNote{}, err
+		return Note{}, err
 	}
 
 	note.Title = title
