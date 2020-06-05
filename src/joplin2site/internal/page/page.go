@@ -50,7 +50,7 @@ func FromNote(n note.Note) (Page, error) {
 
 	var meta userMeta
 	if err := yaml.UnmarshalStrict([]byte(metaS), &meta); err != nil {
-		return Page{}, fmt.Errorf("failed to unmarshal user's metadata: %w", err)
+		return Page{}, fmt.Errorf("bad user's metadata: %w", err)
 	}
 
 	html := markdown.ToHTML([]byte(body), nil, nil)

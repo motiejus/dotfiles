@@ -52,7 +52,7 @@ foo: /non-existing-key/
 -->
 `,
 			},
-			wantErr: "failed to unmarshal user's metadata: yaml: unmarshal errors:\n  line 1: field foo not found in type page.userMeta",
+			wantErr: "bad user's metadata: yaml: unmarshal errors:\n  line 1: field foo not found in type page.userMeta",
 		},
 	}
 
