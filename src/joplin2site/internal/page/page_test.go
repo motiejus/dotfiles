@@ -44,6 +44,16 @@ This is body`,
 			},
 			wantErr: `missing metadata closing tag`,
 		},
+		{
+			name: "bad user's metadata",
+			note: note.Note{
+				Body: `<!--
+foo: /non-existing-key/
+-->
+`,
+			},
+			wantErr: "failed to unmarshal user's metadata: yaml: unmarshal errors:\n  line 1: field foo not found in type page.userMeta",
+		},
 	}
 
 	for _, tt := range tests {
