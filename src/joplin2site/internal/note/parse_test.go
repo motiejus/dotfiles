@@ -1,10 +1,9 @@
-package conv
+package note
 
 import (
 	"testing"
 	"time"
 
-	"github.com/motiejus/dotfiles/joplin2site/internal/note"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -14,7 +13,7 @@ func TestParse(t *testing.T) {
 		name     string
 		note     string
 		wantErr  string
-		wantNote note.JoplinNote
+		wantNote JoplinNote
 	}{
 		{
 			name: "ok, has body",
@@ -26,12 +25,12 @@ id: 4c7dd536ce1641afa4df349d87d9d29f
 parent_id: 9e651b478a5a43c196c31719300fee6e
 type_: 1
 `,
-			wantNote: note.JoplinNote{
+			wantNote: JoplinNote{
 				ID:       "4c7dd536ce1641afa4df349d87d9d29f",
 				Title:    "Meta",
 				Body:     "Fonts: https://news.ycombinator.com/item?id=23381513",
 				ParentID: "9e651b478a5a43c196c31719300fee6e",
-				Type:     note.ItemTypeNote,
+				Type:     ItemTypeNote,
 			},
 		},
 		{
@@ -43,12 +42,12 @@ updated_time: 2020-06-04T16:07:19.930Z
 encryption_applied: 0
 type_: 2
 `,
-			wantNote: note.JoplinNote{
+			wantNote: JoplinNote{
 				ID:          "9e651b478a5a43c196c31719300fee6e",
 				Title:       "blog",
 				Body:        "",
 				UpdatedTime: time.Date(2020, 6, 4, 16, 07, 19, 930000000, time.UTC),
-				Type:        note.ItemTypeFolder,
+				Type:        ItemTypeFolder,
 			},
 		},
 		{

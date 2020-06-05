@@ -1,27 +1,26 @@
-package conv
+package note
 
 import (
 	"strings"
 
-	"github.com/motiejus/dotfiles/joplin2site/internal/note"
 	"gopkg.in/yaml.v2"
 )
 
-func Parse(in string) (note.JoplinNote, error) {
+func Parse(in string) (JoplinNote, error) {
 	var title, body, params string
 	titleIdx := strings.Index(in, "\n\n")
 	paramsIdx := strings.LastIndex(in, "\n\n")
 	title, body, params = in[0:titleIdx], in[min(titleIdx+2, paramsIdx):paramsIdx], in[paramsIdx:]
 
-	var jnote note.JoplinNote
-	if err := yaml.Unmarshal([]byte(params), &jnote); err != nil {
-		return note.JoplinNote{}, err
+	var note JoplinNote
+	if err := yaml.Unmarshal([]byte(params), &note); err != nil {
+		return JoplinNote{}, err
 	}
 
-	jnote.Title = title
-	jnote.Body = body
+	note.Title = title
+	note.Body = body
 
-	return jnote, nil
+	return note, nil
 }
 
 func min(a, b int) int {
