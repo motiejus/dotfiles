@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gomarkdown/markdown"
 	"github.com/motiejus/dotfiles/joplin2site/internal/note"
 	"gopkg.in/yaml.v2"
 )
@@ -52,11 +53,13 @@ func FromNote(n note.Note) (Page, error) {
 		return Page{}, fmt.Errorf("failed to unmarshal user's metadata: %w", err)
 	}
 
+	html := markdown.ToHTML([]byte(body), nil, nil)
+
 	return Page{
 		ID:          n.ID,
 		Title:       n.Title,
 		URL:         meta.URL,
-		BodyHTML:    body,
+		BodyHTML:    string(html),
 		CreatedAt:   n.CreatedTime,
 		PublishedAt: meta.PublishedAt,
 	}, nil

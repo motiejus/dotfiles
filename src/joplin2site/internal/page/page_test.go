@@ -23,11 +23,11 @@ func TestFromNote(t *testing.T) {
 url: /about/
 published_at: 2020-06-05T12:42:00Z
 -->
-This is body`,
+# Heading 3`,
 			},
 			wantPage: Page{
 				URL:         "/about/",
-				BodyHTML:    "This is body",
+				BodyHTML:    "<h1>Heading 3</h1>\n",
 				PublishedAt: time.Date(2020, 6, 5, 12, 42, 00, 0, time.UTC),
 			},
 		},
