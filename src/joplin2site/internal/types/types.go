@@ -5,9 +5,9 @@ import "time"
 // JoplinNote is how Joplin understands the note.
 type JoplinNote struct {
 	ID                   string    `yaml:"id"`
-	ParentId             string    `yaml:"parent_id"`
-	Title                string    `yaml:"title"`
-	Body                 string    `yaml:"body"`
+	ParentID             string    `yaml:"parent_id"`
+	Title                string    `yaml:"-"`
+	Body                 string    `yaml:"-"`
 	CreatedTime          time.Time `yaml:"created_time"`
 	UpdatedTime          time.Time `yaml:"updated_time"`
 	IsConflict           int       `yaml:"is_conflict"`
