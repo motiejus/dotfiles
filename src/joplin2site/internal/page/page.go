@@ -1,8 +1,10 @@
 package page
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
+	"html/template"
 	"strings"
 	"time"
 
@@ -16,7 +18,7 @@ type Page struct {
 	ID          string
 	Title       string
 	URL         string
-	BodyHTML    string
+	Body        string
 	CreatedAt   time.Time
 	PublishedAt time.Time
 }
@@ -53,14 +55,49 @@ func FromNote(n note.Note) (Page, error) {
 		return Page{}, fmt.Errorf("bad user's metadata: %w", err)
 	}
 
-	html := markdown.ToHTML([]byte(body), nil, nil)
-
 	return Page{
 		ID:          n.ID,
 		Title:       n.Title,
 		URL:         meta.URL,
-		BodyHTML:    string(html),
+		Body:        body,
 		CreatedAt:   n.CreatedTime,
 		PublishedAt: meta.PublishedAt,
 	}, nil
+}
+
+type templateContext struct {
+	tree *Tree
+}
+
+func (t *templateContext) indexFor(name string) ([]byte, error) {
+	subpages, err := t.tree.SubPages(name)
+	if err != nil {
+		return nil, err
+	}
+
+	var buf bytes.Buffer
+	if err := _indexFor.Execute(&buf, subpages); err != nil {
+		return nil, fmt.Errorf("failed to generate index: %w", err)
+	}
+	return buf.Bytes(), nil
+}
+
+// Render() renders the concrete page
+func (p Page) Render(t *Tree) ([]byte, error) {
+	tplName := p.Title + "-" + p.ID
+	tpl, err := template.New(tplName).Parse(p.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse user's page: %w", err)
+	}
+	tctx := templateContext{tree: t}
+	funcs := template.FuncMap{
+		"indexFor": tctx.indexFor,
+	}
+	var buf bytes.Buffer
+	if err := tpl.Funcs(funcs).Execute(&buf, nil); err != nil {
+		return nil, fmt.Errorf("failed to execute template: %w", err)
+	}
+	html := markdown.ToHTML(buf.Bytes(), nil, nil)
+
+	return html, nil
 }

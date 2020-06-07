@@ -1,8 +1,6 @@
 package html
 
-import "text/template"
-
-const _indexTemplate = `
+const _pageTemplate = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +13,7 @@ const _indexTemplate = `
   </style>
 </head>
 <body>
-  <div class="par">
-  {{ range _, $page = .Pages }}
-    <div>
-      <div class="pd">{{ $page.PublishedAt }}</div>
-      <a href="{{ $page.URL }}">{{ $page.Title | html }}</a> 
-    </div>
-  {{ end }}
-  </div>
+{{ block "body" }}
 </body>
-</html>`
-
-var index = template.Must(template.New("index").Parse(_indexTemplate))
+</html>
+`
