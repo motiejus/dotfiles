@@ -38,7 +38,7 @@ const (
 	_metaSuffix = "\n-->\n"
 )
 
-// FromNote converts a Joplin Note to Page
+// FromNote converts a Joplin Note to a Page
 func FromNote(n note.Note) (Page, error) {
 	if !strings.HasPrefix(n.Body, _metaPrefix) {
 		return Page{}, ErrMetaStart
@@ -66,30 +66,30 @@ func FromNote(n note.Note) (Page, error) {
 }
 
 type templateContext struct {
-	tree *Tree
+	notes note.Notes
 }
 
-func (t *templateContext) indexFor(name string) ([]byte, error) {
-	subpages, err := t.tree.SubPages(name)
+func (t *templateContext) indexFor(title string) ([]byte, error) {
+	pages, err := SubPages(t.notes, title)
 	if err != nil {
 		return nil, err
 	}
 
 	var buf bytes.Buffer
-	if err := _indexFor.Execute(&buf, subpages); err != nil {
+	if err := _indexFor.Execute(&buf, pages); err != nil {
 		return nil, fmt.Errorf("failed to generate index: %w", err)
 	}
 	return buf.Bytes(), nil
 }
 
 // Render() renders the concrete page
-func (p *Page) Render(t *Tree) ([]byte, error) {
+func (p *Page) Render(notes note.Notes) ([]byte, error) {
 	tplName := p.Title + "-" + p.ID
 	tpl, err := template.New(tplName).Parse(p.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse user's page: %w", err)
 	}
-	tctx := templateContext{tree: t}
+	tctx := templateContext{notes: notes}
 	funcs := template.FuncMap{
 		"indexFor": tctx.indexFor,
 	}
