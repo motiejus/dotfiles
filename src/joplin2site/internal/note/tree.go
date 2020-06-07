@@ -31,15 +31,15 @@ func ListNotes(dir string) (Notes, error) {
 }
 
 // SubPages returns immediate Pages of a tree
-func (t *Tree) SubPages(name string) ([]Page, error) {
+func (n Notes) SubPages(name string) (Notes, error) {
 	// Find the parent note that will be the parent of the sub-notebook.
 	var parentID string
-	for _, inote := range t.Notes {
-		if inote.Type != note.ItemTypeFolder {
+	for _, note := range n {
+		if note.Type != ItemTypeFolder {
 			continue
 		}
-		if inote.Title == name {
-			parentID = inote.ID
+		if note.Title == name {
+			parentID = note.ID
 		}
 	}
 
@@ -101,4 +101,26 @@ func (n Notes) getFolderID(title string) string {
 	}
 
 	return parentID
+}
+
+type tree map[string]children
+type children map[string]struct{}
+
+func buildTree(notes Notes) tree {
+	ret := make(tree)
+	for _, note := range notes {
+		if _, ok := ret[note.ParentID]; !ok {
+			ret[note.ParentID] = make(children)
+		}
+		ret[note.ParentID][note.ID] = struct{}{}
+	}
+	return ret
+}
+
+// flatten returns all children of a tree
+func (t tree) flatten(id string, acc tree) {
+	acc[id] = struct{}{}
+	for child := range t {
+		flatten(child, acc)
+	}
 }
