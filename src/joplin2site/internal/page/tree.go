@@ -9,7 +9,7 @@ import (
 )
 
 type Tree struct {
-	Pages []Page
+	Notes []note.Note
 }
 
 // Buildtree builds a tree from the directory
@@ -51,10 +51,10 @@ func (t *Tree) SubPages(name string) ([]Page, error) {
 	}
 
 	if parentID == "" {
-		return nil, fmt.Errorf("sub-page %q not found")
+		return nil, fmt.Errorf("sub-page %q not found", name)
 	}
 
-	var retNotes []note.Note
+	var retPages []Page
 	for _, inote := range t.Notes {
 		if inote.ParentID != parentID {
 			continue

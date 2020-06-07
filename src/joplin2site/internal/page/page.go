@@ -83,7 +83,7 @@ func (t *templateContext) indexFor(name string) ([]byte, error) {
 }
 
 // Render() renders the concrete page
-func (p Page) Render(t *Tree) ([]byte, error) {
+func (p *Page) Render(t *Tree) ([]byte, error) {
 	tplName := p.Title + "-" + p.ID
 	tpl, err := template.New(tplName).Parse(p.Body)
 	if err != nil {
