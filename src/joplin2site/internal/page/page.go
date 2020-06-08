@@ -11,17 +11,23 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// Page contains everything that's necessary to render a page.
-type Page struct {
-	ID          string
-	Title       string
-	URL         string
-	Body        string
-	CreatedAt   time.Time
-	PublishedAt time.Time
-}
+type (
+	// Page contains everything that's necessary to render a page.
+	Page struct {
+		ID          string
+		Title       string
+		URL         string
+		Body        string
+		CreatedAt   time.Time
+		PublishedAt time.Time
+	}
 
-type Pages []Page
+	// Pages is a slice of pages.
+	Pages []Page
+
+	// PageHierarchy is a map of: folderID -> ordered list of pages.
+	PageHierarchy map[string][]*Page
+)
 
 type userMeta struct {
 	URL         string    `yaml:"url"`

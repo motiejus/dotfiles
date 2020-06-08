@@ -85,7 +85,16 @@ func Parse(in string) (Note, error) {
 	return note, nil
 }
 
-type Notes map[string]*Note
+type (
+	// Notes is a list of notes by ID.
+	Notes map[string]*Note
+
+	// NoteTree is a note hierarchy by ID.
+	NoteTree map[string]NoteChildren
+
+	// NoteChildren is a string set of node's children.
+	NoteChildren map[string]struct{}
+)
 
 func ListNotes(dir string) (Notes, error) {
 	files, err := ioutil.ReadDir(dir)
@@ -116,7 +125,7 @@ func (notes Notes) Shake(tld string) (Notes, error) {
 		return nil, fmt.Errorf("tld %q not found", tld)
 	}
 
-	children := make(children)
+	children := make(NoteChildren)
 	buildTree(notes).flatten(topID, children)
 
 	ret := make(Notes, len(children))
@@ -142,14 +151,11 @@ func (notes Notes) GetFolderID(title string) string {
 	return parentID
 }
 
-type tree map[string]children
-type children map[string]struct{}
-
-func buildTree(notes Notes) tree {
-	ret := make(tree)
+func buildTree(notes Notes) NoteTree {
+	ret := make(NoteTree)
 	for _, note := range notes {
 		if _, ok := ret[note.ParentID]; !ok {
-			ret[note.ParentID] = make(children)
+			ret[note.ParentID] = make(NoteChildren)
 		}
 		ret[note.ParentID][note.ID] = struct{}{}
 	}
@@ -157,7 +163,7 @@ func buildTree(notes Notes) tree {
 }
 
 // flatten returns all children of a tree
-func (t tree) flatten(id string, acc children) {
+func (t NoteTree) flatten(id string, acc NoteChildren) {
 	acc[id] = struct{}{}
 	for child := range t {
 		t.flatten(child, acc)

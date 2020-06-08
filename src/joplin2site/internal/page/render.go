@@ -11,8 +11,7 @@ import (
 
 // Render() renders the concrete page
 func (p *Page) Render(notes note.Notes) ([]byte, error) {
-	tplName := p.Title + "-" + p.ID
-	tpl, err := template.New(tplName).Parse(p.Body)
+	tpl, err := template.New(p.ID).Parse(p.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse user's page: %w", err)
 	}
