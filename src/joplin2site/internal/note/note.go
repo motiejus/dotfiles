@@ -69,10 +69,12 @@ const (
 )
 
 func Parse(in string) (Note, error) {
-	var title, body, params string
 	titleIdx := strings.Index(in, "\n\n")
 	paramsIdx := strings.LastIndex(in, "\n\n")
-	title, body, params = in[0:titleIdx], in[min(titleIdx+2, paramsIdx):paramsIdx], in[paramsIdx:]
+	title, body, params :=
+		in[:titleIdx],
+		in[min(titleIdx+2, paramsIdx):paramsIdx],
+		in[paramsIdx:]
 
 	var note Note
 	if err := yaml.Unmarshal([]byte(params), &note); err != nil {
@@ -86,8 +88,8 @@ func Parse(in string) (Note, error) {
 }
 
 type (
-	// Notes is a list of notes by ID.
-	Notes map[string]*Note
+	// Notes is a map from ID to *Note
+	Notes map[string]Note
 
 	// NoteTree is a note hierarchy by ID.
 	NoteTree map[string]NoteChildren
@@ -112,28 +114,29 @@ func ListNotes(dir string) (Notes, error) {
 			return nil, fmt.Errorf("failed to parse %q: %w", file.Name(), err)
 		}
 
-		notes[note.ID] = &note
+		notes[note.ID] = note
 	}
 
 	return notes, nil
 }
 
 // Shake returns a sub-set of notes which eventually parent to "tld"
-func (notes Notes) Shake(tld string) (Notes, error) {
+func (notes Notes) Shake(tree NoteTree, tld string) error {
 	topID := notes.GetFolderID(tld)
 	if topID == "" {
-		return nil, fmt.Errorf("tld %q not found", tld)
+		return fmt.Errorf("tld %q not found", tld)
 	}
 
 	children := make(NoteChildren)
-	buildTree(notes).flatten(topID, children)
+	tree.flatten(topID, children)
 
 	ret := make(Notes, len(children))
 	for noteID := range children {
 		ret[noteID] = notes[noteID]
 	}
+	notes = ret
 
-	return ret, nil
+	return nil
 }
 
 // GetFolderID returns a folder ID for a particular title
@@ -151,7 +154,8 @@ func (notes Notes) GetFolderID(title string) string {
 	return parentID
 }
 
-func buildTree(notes Notes) NoteTree {
+// BuildTree builds a note tree.
+func BuildTree(notes Notes) NoteTree {
 	ret := make(NoteTree)
 	for _, note := range notes {
 		if _, ok := ret[note.ParentID]; !ok {
@@ -162,7 +166,21 @@ func buildTree(notes Notes) NoteTree {
 	return ret
 }
 
-// flatten returns all children of a tree
+// Subtree takes a sub-tree under a given tld.
+func (t NoteTree) Subtree(id string) {
+	var ret NoteTree
+	subtree(id, ret)
+	t = ret
+}
+
+func (t NoteTree) subtree(id string, acc NoteTree) {
+	for cid := range t[id] {
+		acc[cid] = make(NoteChildren, len(t[cid]))
+		t.subtree(cid, acc)
+	}
+}
+
+// flatten returns a flat list of all `id`'s descendants.
 func (t NoteTree) flatten(id string, acc NoteChildren) {
 	acc[id] = struct{}{}
 	for child := range t {
