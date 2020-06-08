@@ -18,7 +18,7 @@ func SubPages(notes note.Notes, title string) (Pages, error) {
 		return nil, fmt.Errorf("sub-page %q not found", title)
 	}
 
-	var pages []Page
+	var pages Pages
 	for _, inote := range notes {
 		if inote.ParentID != parentID {
 			continue

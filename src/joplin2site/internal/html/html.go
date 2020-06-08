@@ -3,34 +3,21 @@ package html
 import (
 	"fmt"
 
-	"github.com/motiejus/dotfiles/joplin2site/internal/page"
+	"github.com/motiejus/dotfiles/joplin2site/internal/note"
 )
 
 type Files map[string][]byte
 
 // Render accepts a TLD and returns URL -> []bytes mapping.
 func Render(dir, tld string) (Files, error) {
-	noteTree, err := page.BuildTree(dir)
+	notes1, err := note.ListNotes(dir)
 	if err != nil {
-		return nil, fmt.Errorf("failed to build template tree: %w", err)
+		return nil, fmt.Errorf("failed to get notes: %w", err)
 	}
-	pages, err := noteTree.SubPages(tld)
+	_, err := notes1.Shake(tld)
 	if err != nil {
 		return nil, err
 	}
 
-	// find index page
-	var indexPage page.Page
-	for _, ipage := range pages {
-		if ipage.URL == "/" {
-			indexPage = ipage
-		}
-	}
-
-	p, err := indexPage.Render(&noteTree)
-	if err != nil {
-		fmt.Errorf("failed to render index page: %w", err)
-	}
-
-	return Files{"/": p}, nil
+	return nil, nil
 }
