@@ -1,14 +1,12 @@
 package page
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
-	"html/template"
+	"sort"
 	"strings"
 	"time"
 
-	"github.com/gomarkdown/markdown"
 	"github.com/motiejus/dotfiles/joplin2site/internal/note"
 	"gopkg.in/yaml.v2"
 )
@@ -22,6 +20,8 @@ type Page struct {
 	CreatedAt   time.Time
 	PublishedAt time.Time
 }
+
+type Pages []Page
 
 type userMeta struct {
 	URL         string    `yaml:"url"`
@@ -65,39 +65,33 @@ func FromNote(n note.Note) (Page, error) {
 	}, nil
 }
 
-type templateContext struct {
-	notes note.Notes
-}
-
-func (t *templateContext) indexFor(title string) ([]byte, error) {
-	pages, err := SubPages(t.notes, title)
-	if err != nil {
-		return nil, err
+// SubPages returns immediate Pages of a tree
+func SubPages(notes note.Notes, title string) (Pages, error) {
+	// Find the parent note that will be the parent of the sub-notebook.
+	parentID := notes.GetFolderID(title)
+	if parentID == "" {
+		return nil, fmt.Errorf("sub-page %q not found", title)
 	}
 
-	var buf bytes.Buffer
-	if err := _indexFor.Execute(&buf, pages); err != nil {
-		return nil, fmt.Errorf("failed to generate index: %w", err)
+	var pages Pages
+	for _, inote := range notes {
+		if inote.ParentID != parentID {
+			continue
+		}
+		if inote.Type != note.ItemTypeNote {
+			continue
+		}
+		page, err := FromNote(*inote)
+		if err != nil {
+			return nil, fmt.Errorf("failed to convert note to page: %w", err)
+		}
+		if page.PublishedAt.After(time.Now()) {
+			continue
+		}
+		pages = append(pages, page)
 	}
-	return buf.Bytes(), nil
-}
-
-// Render() renders the concrete page
-func (p *Page) Render(notes note.Notes) ([]byte, error) {
-	tplName := p.Title + "-" + p.ID
-	tpl, err := template.New(tplName).Parse(p.Body)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse user's page: %w", err)
-	}
-	tctx := templateContext{notes: notes}
-	funcs := template.FuncMap{
-		"indexFor": tctx.indexFor,
-	}
-	var buf bytes.Buffer
-	if err := tpl.Funcs(funcs).Execute(&buf, nil); err != nil {
-		return nil, fmt.Errorf("failed to execute template: %w", err)
-	}
-	html := markdown.ToHTML(buf.Bytes(), nil, nil)
-
-	return html, nil
+	sort.Slice(pages, func(i, j int) bool {
+		return pages[i].PublishedAt.Before(pages[j].PublishedAt)
+	})
+	return pages, nil
 }

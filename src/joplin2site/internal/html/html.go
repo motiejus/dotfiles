@@ -14,7 +14,7 @@ func Render(dir, tld string) (Files, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to get notes: %w", err)
 	}
-	_, err := notes1.Shake(tld)
+	_, err = notes1.Shake(tld)
 	if err != nil {
 		return nil, err
 	}
