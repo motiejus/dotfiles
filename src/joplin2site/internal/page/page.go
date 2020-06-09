@@ -32,8 +32,10 @@ type userMeta struct {
 }
 
 var (
-	ErrMetaStart = errors.New("missing metadata opening tag")
-	ErrMetaEnd   = errors.New("missing metadata closing tag")
+	ErrMetaStart   = errors.New("missing metadata opening tag")
+	ErrMetaEnd     = errors.New("missing metadata closing tag")
+	ErrUnpublished = errors.New("not yet published")
+	ErrBadType     = errors.New("invalid note type")
 )
 
 const (
@@ -42,28 +44,37 @@ const (
 )
 
 // FromNote converts a Joplin Note to a Page
-func FromNote(n inote.Note) (Page, error) {
-	if !strings.HasPrefix(n.Body, _metaPrefix) {
+func FromNote(note inote.Note) (Page, error) {
+	if note.Type != inote.ItemTypeNote {
+		return Page{}, fmt.Errorf("got %d, expected %d: %w",
+			note.Type, inote.ItemTypeNote, ErrBadType)
+	}
+
+	if !strings.HasPrefix(note.Body, _metaPrefix) {
 		return Page{}, ErrMetaStart
 	}
-	endIdx := strings.Index(n.Body, _metaSuffix)
+	endIdx := strings.Index(note.Body, _metaSuffix)
 	if endIdx == -1 {
 		return Page{}, ErrMetaEnd
 	}
-	metaS := n.Body[len(_metaPrefix):endIdx]
-	body := n.Body[endIdx+len(_metaSuffix):]
+	metaS := note.Body[len(_metaPrefix):endIdx]
+	body := note.Body[endIdx+len(_metaSuffix):]
 
 	var meta userMeta
 	if err := yaml.UnmarshalStrict([]byte(metaS), &meta); err != nil {
 		return Page{}, fmt.Errorf("bad user's metadata: %w", err)
 	}
 
+	if page.PublishedAt.After(time.Now()) {
+		return Page{}, ErrUnpublished
+	}
+
 	return Page{
-		ID:          n.ID,
-		Title:       n.Title,
+		ID:          note.ID,
+		Title:       note.Title,
 		URL:         meta.URL,
 		Body:        body,
-		CreatedAt:   n.CreatedTime,
+		CreatedAt:   note.CreatedTime,
 		PublishedAt: meta.PublishedAt,
 	}, nil
 }
@@ -81,15 +92,11 @@ func SubPages(notes inote.Notes, title string) (Pages, error) {
 		if note.ParentID != parentID {
 			continue
 		}
-		if note.Type != inote.ItemTypeNote {
-			continue
-		}
 		page, err := FromNote(note)
-		if err != nil {
-			return nil, fmt.Errorf("failed to convert note to page: %w", err)
-		}
-		if page.PublishedAt.After(time.Now()) {
+		if err != nil && (errors.Is(err, ErrBadType) || errors.Is(err, ErrUnpublished)) {
 			continue
+		} else if err != nil {
+			return nil, fmt.Errorf("failed to convert note to page: %w", err)
 		}
 		pages = append(pages, page)
 	}
@@ -103,17 +110,12 @@ func SubPages(notes inote.Notes, title string) (Pages, error) {
 func ToPublishablePages(notes inote.Notes) (Pages, error) {
 	pages := make([]Page, len(notes))
 	for id, note := range notes {
-		if note.Type != inote.ItemTypeNote {
-			continue
-		}
 		page, err := ipage.FromNote(note)
-		if err != nil {
+		if err != nil && (errors.Is(err, ErrBadType) || errors.Is(err, ErrUnpublished)) {
+			continue
+		} else if err != nil {
 			return nil, fmt.Errorf("failed to convert note to page: %w", err)
 		}
-		if page.PublishedAt.After(time.Now()) {
-			continue
-		}
-
 		pages = append(pages, page)
 	}
 	return pages, nil
@@ -125,10 +127,14 @@ type PrevNext struct {
 }
 
 // Sequenced returns sequenced pages within the same folder.
-func (pages Pages) Sequenced(tree inote.NoteTree) map[string]PrevNext {
-	// folders maps folder ID -> set(note id)
-	var folders map[string]map[string]struct{}
+func (pages Pages) Sequenced(notes inote.Notes, tree inote.NoteTree) map[string]PrevNext {
+	// folders maps folder ID -> []noteID
+	var folders map[string][]string
 	for _, page := range pages {
-		parent := tree[
+		parentID := notes[page.ID].ParentID
+		if _, ok := folders[parentID]; !ok {
+			folders[parentID] = []string{}
+		}
+		folders[parentID] = append(folders[parentID], page.ID)
 	}
 }
