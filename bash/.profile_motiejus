@@ -43,6 +43,7 @@ nman() {
 export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
 alias cerberus='cerberus --zone phx2 --no-status-page'
+alias gp='git remote | parallel --verbose git push'
 
 export UBER_HOME=/home/motiejus/Uber
 export UBER_OWNER=motiejus@uber.com
@@ -52,4 +53,3 @@ bazel() {
     shift
     env bazel "$arg1" --color=yes "$@" 3>&1 1>&2 2>&3 | grep -Ev 'DEBUG: .*401 Unauthorized$'
 }
-
