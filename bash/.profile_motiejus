@@ -11,8 +11,6 @@ eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=""
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
 export EDITOR=vim
-export GOPATH=$HOME/.gopath
-#export MONOREPO_GOPATH_MODE=1
 
 ulimit -Sn 10240
 
