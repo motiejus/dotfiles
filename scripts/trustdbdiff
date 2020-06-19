@@ -1,0 +1,4 @@
+#!/bin/bash
+set -eu
+
+GNUPGHOME=$(dirname "$1") gpg --export-ownertrust
