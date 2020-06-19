@@ -9,3 +9,5 @@ domain.csr filter=git-crypt diff=git-crypt
 
 # ssh
 id_ed25519 filter=git-crypt diff=git-crypt
+
+trustdb.gpg diff=trustdbdiff
