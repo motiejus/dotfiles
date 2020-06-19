@@ -62,6 +62,5 @@ au BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expan
 " yaml
 au FileType yaml let ts=2 sw=2
 
-
 " sql
 let g:omni_sql_no_default_maps = 1
