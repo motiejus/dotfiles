@@ -11,7 +11,7 @@ eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=""
 export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
 export EDITOR=vim
-export GOPATH=$HOME/.gopath
+#export GOPATH=$HOME/.gopath
 
 ulimit -Sn 10240
 
@@ -43,6 +43,7 @@ export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
 alias cerberus='cerberus --zone phx2 --no-status-page'
 alias gp='git remote | parallel --verbose git push'
+alias gf='git remote | parallel --verbose git fetch'
 
 export UBER_HOME=/home/motiejus/Uber
 export UBER_OWNER=motiejus@uber.com
