@@ -6,6 +6,3 @@
 /vim/.vim/.netrwhist
 /ctags/.rusty-tags/cache
 /ctags/.rusty-tags/locks
-
-root/etc/nginx/letsencrypt/*.csr
-root/etc/nginx/letsencrypt/*.crt

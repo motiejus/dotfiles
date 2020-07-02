@@ -1,12 +1,3 @@
-# postfix
-sasl_passwd filter=git-crypt diff=git-crypt
-
-# nginx/letsencrypt
-account.key filter=git-crypt diff=git-crypt
-dhparam.pem filter=git-crypt diff=git-crypt
-domain.key filter=git-crypt diff=git-crypt
-domain.csr filter=git-crypt diff=git-crypt
-
 # ssh
 id_ed25519 filter=git-crypt diff=git-crypt
 
