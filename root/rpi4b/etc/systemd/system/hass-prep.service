@@ -1,8 +1,0 @@
-[Unit]
-Description=Some isolated web service
-After=network.target network-online.target bigdisk.mount
-Requires=bigdisk.mount
-
-[Service]
-Type=oneoff
-ExecStart=/usr/local/bin/docker2root homeassistant/home-assistant:0.107.7
