@@ -178,7 +178,11 @@ exec --no-startup-id xsetroot -solid "#008080"
 #input * xkb_options "grp:alt_shift_toggle"
 #output * bg #008080 solid_color
 
-default_border pixel 1
+# newer i3/sway:
+#default_border pixel 1
+# older i3:
+new_window pixel 1
+
 exec --no-startup-id nm-applet &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id pnmixer &
