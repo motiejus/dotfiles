@@ -36,6 +36,7 @@ nman() {
 }
 
 [[ -f $HOME/.gg.sh ]] && . $HOME/.gg.sh
+export MONOREPO_GOPATH_MODE=1
 [[ -f $HOME/.gopathmodeFunc.bash ]] && . $HOME/.gopathmodeFunc.bash
 [[ -f $HOME/.bashrc_time.sh ]] && . $HOME/.bashrc_time.sh
 
