@@ -1,0 +1,8 @@
+[user]
+	email = motiejus@uber.com
+	name = Motiejus Jakštys
+
+[http]
+    followRedirects = true
+[pull]
+	ff = only
