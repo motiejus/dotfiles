@@ -187,7 +187,7 @@ exec --no-startup-id blueman-applet &
 exec --no-startup-id pnmixer &
 exec --no-startup-id xss-lock -- i3lock --ignore-empty-password --pointer win --color=$lockbg &
 
-bindsym $mod+space exec --no-startup-id /home/motiejus/bin/kbtoggle
+bindsym $mod+space exec --no-startup-id i3lock --ignore-empty-password --pointer win --color=$lockbg &
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
@@ -200,7 +200,6 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+Left workspace prev
 bindsym $mod+Right workspace next
-bindsym $mod+Ctrl+q exec --no-startup-id i3lock --ignore-empty-password --pointer win --color=$lockbg
 bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show; floating toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%; exec --no-startup-id pactl set-sink-volume 1 +5%
