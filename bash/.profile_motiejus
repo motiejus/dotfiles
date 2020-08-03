@@ -37,7 +37,7 @@ nman() {
 
 [[ -f $HOME/.gg.sh ]] && . $HOME/.gg.sh
 export MONOREPO_GOPATH_MODE=1
-[[ -f $HOME/.bashrc_time.sh ]] && . $HOME/.bashrc_time.sh
+#[[ -f $HOME/.bashrc_time.sh ]] && . $HOME/.bashrc_time.sh
 
 export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
