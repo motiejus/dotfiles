@@ -16,6 +16,8 @@ export EDITOR=vim
 ulimit -Sn 10240
 
 for path in \
+    /sbin \
+    /usr/sbin \
     $HOME/bin \
     ; do
     if [[ ! $PATH =~ $path ]]; then
