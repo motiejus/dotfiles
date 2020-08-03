@@ -3,19 +3,19 @@ filetype plugin indent on
 set et ts=4 sw=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
 set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m backspace=2 nojs
 
-if has("patch-8.1-0360")
-  set diffopt+=algorithm:patience
-endif
-
-" uh oh, truly custom mappings
-nnoremap <Leader>\ gqj
-
 " inspired by vim-sensible
 set autoindent smarttab nrformats-=octal
 " Use <C-L> to clear the highlighting of :set hlsearch.
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 set laststatus=2 wildmenu scrolloff=1 sidescrolloff=5 display+=lastline encoding=utf-8
 set formatoptions+=j history=1000 tabpagemax=50 sessionoptions-=options
+
+if has("patch-8.1-0360")
+  set diffopt+=algorithm:patience
+endif
+
+" truly custom mappings
+nnoremap <Leader>\ gqj
 
 let g:gutentags_enabled = 0
 let g:gutentags_generate_on_new = 0
@@ -36,8 +36,8 @@ au BufRead,BufNewFile *.pp setfiletype puppet
 au FileType puppet setlocal ts=2 sw=2 sws=2 syntax=ruby
 au FileType puppet let g:gutentags_enabled = 1
 au FileType puppet let b:gutentags_file_list_command = 'git ls-files *.pp'
-au FileType puppet nnoremap <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>vE<C-]>
-"au FileType puppet nnoremap <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>:call search('[^a-z:]\|$', 's')<cr>hv`'<C-]>
+au FileType puppet nnoremap <buffer> <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>vE<C-]>
+"au FileType puppet nnoremap <buffer> <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>:call search('[^a-z:]\|$', 's')<cr>hv`'<C-]>
 
 " avro
 au BufRead,BufNewFile *.avsc setfiletype json
@@ -45,7 +45,7 @@ au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sws=2
 
 " go
 au FileType go setlocal noet
-au FileType go nnoremap <C-]> :GoDef<CR>
+au FileType go nnoremap <buffer> <C-]> :GoDef<CR>
 au FileType go let g:go_template_autocreate = 0
 au FileType go let g:go_fmt_command = "goimports"
 "au FileType go let g:go_fmt_command = "gofmt"
