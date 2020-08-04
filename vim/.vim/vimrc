@@ -52,6 +52,3 @@ au FileType strace set nonu
 
 " yaml
 au FileType yaml set ts=2 sw=2
-
-" sql
-let g:omni_sql_no_default_maps = 1
