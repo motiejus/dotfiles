@@ -6,14 +6,12 @@ command OLD :new +setl\ buftype=nofile | 0put =v:oldfiles | nnoremap <buffer> <C
 
 " inspired by vim-sensible
 set autoindent smarttab nrformats-=octal
-" Use <C-L> to clear the highlighting of :set hlsearch.
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 set laststatus=2 wildmenu scrolloff=1 sidescrolloff=5 display+=lastline encoding=utf-8
 set formatoptions+=j history=1000 tabpagemax=50 sessionoptions-=options
 if has("patch-8.1-0360")
   set diffopt+=algorithm:patience
 endif
-
 
 " truly custom mappings
 nnoremap <Leader>\ gqj
@@ -28,9 +26,6 @@ au FileType html setlocal ts=2 sw=2 sws=2
 
 " ruby
 au BufRead,BufNewFile Vagrantfile setfiletype ruby
-
-" buck
-au BufRead,BufNewFile BUCK setfiletype python
 
 " puppet
 au BufRead,BufNewFile *.pp setfiletype puppet
@@ -54,11 +49,6 @@ let $USEGO111MODULE="off"
 
 " strace
 au FileType strace set nonu
-
-" rust
-au FileType rust let g:rustfmt_autosave = 1
-au FileType rust setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-au BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
 " yaml
 au FileType yaml set ts=2 sw=2
