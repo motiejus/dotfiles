@@ -23,6 +23,9 @@ au FileType html setlocal ts=2 sw=2 sws=2
 " ruby
 au BufRead,BufNewFile Vagrantfile setfiletype ruby
 
+" starlark
+au BufRead,BufNewFile *.star setfiletype python
+
 " puppet
 au BufRead,BufNewFile *.pp setfiletype puppet
 au FileType puppet setlocal ts=2 sw=2 sws=2 syntax=ruby
