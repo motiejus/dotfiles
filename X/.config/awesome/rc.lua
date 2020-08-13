@@ -125,7 +125,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock("%F %T %a", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -344,7 +344,24 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- My customizations
+    awful.key({}, "XF86AudioRaiseVolume", function()
+        awful.spawn.with_shell("pactl set-sink-volume 0 +5%; pactl set-sink-volume 1 +5%")
+    end),
+    awful.key({}, "XF86AudioLowerVolume", function()
+        awful.spawn.with_shell("pactl set-sink-volume 0 -5%; pactl set-sink-volume 1 -5%")
+    end),
+    awful.key({}, "XF86AudioMute", function()
+        awful.spawn.with_shell("pactl set-sink-mute 0 toggle; pactl set-sink-mute 1 toggle")
+    end),
+    awful.key({}, "XF86MonBrightnessUp", function()
+        awful.util.spawn("brightness up")
+    end),
+    awful.key({}, "XF86MonBrightnessDown", function()
+        awful.util.spawn("brightness down")
+    end)
 )
 
 clientkeys = gears.table.join(
@@ -508,7 +525,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -579,4 +596,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
 -- }}}
