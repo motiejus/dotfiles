@@ -4,4 +4,4 @@ gpgconf --launch gpg-agent
 nm-applet &
 blueman-applet &
 pnmixer &
-xss-lock -- i3lock --ignore-empty-password --pointer win --color=$lockbg &
+xss-lock -- i3lock --ignore-empty-password --pointer win --color=3a6ea5 &
