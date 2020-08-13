@@ -1,0 +1,7 @@
+export GPG_SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+nm-applet &
+blueman-applet &
+pnmixer &
+xss-lock -- i3lock --ignore-empty-password --pointer win --color=$lockbg &
