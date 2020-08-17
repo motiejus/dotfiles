@@ -34,4 +34,5 @@ ShortcutsNoMnemonics=TRUE
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 CommandLoginShell=TRUE
+ScrollingOnOutput=FALSE
 
