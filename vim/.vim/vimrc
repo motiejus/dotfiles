@@ -15,7 +15,10 @@ set autoindent smarttab nrformats-=octal
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 set laststatus=2 wildmenu scrolloff=1 sidescrolloff=5 display+=lastline encoding=utf-8
 set formatoptions+=j history=1000 tabpagemax=50 sessionoptions-=options
-set diffopt+=algorithm:patience
+
+if has("patch-8.1-0360")
+  set diffopt+=algorithm:patience
+endif
 
 " html
 au FileType html setlocal ts=2 sw=2 sws=2
