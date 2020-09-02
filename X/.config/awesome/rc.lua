@@ -369,7 +369,7 @@ globalkeys = gears.table.join(
         awful.util.spawn("brightness down")
     end),
     awful.key({ modkey }, "x", function()
-        awful.spawn.with_shell("i3lock --ignore-empty-password --pointer win --color=3a6ea5")
+        awfui.spawn.with_shell("xset dpms force off")
     end)
 )
 

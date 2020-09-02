@@ -46,6 +46,10 @@ au FileType go setlocal noet
 au FileType go nnoremap <buffer> <C-]> :GoDef<CR>
 au FileType go let g:go_template_autocreate = 0
 au FileType go let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
+let g:go_fmt_options = {
+    \ 'goimports': '-local code.uber.internal,thriftrw/code.uber.internal,thrift/code.uber.internal,go.uber.org,golang.org,github.com',
+    \ }
 let $USEGO111MODULE="off"
 
 " strace
