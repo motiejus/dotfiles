@@ -369,7 +369,7 @@ globalkeys = gears.table.join(
         awful.util.spawn("brightness down")
     end),
     awful.key({ modkey }, "x", function()
-        awfui.spawn.with_shell("xset dpms force off")
+        awful.spawn.with_shell("sleep 0.2; xset dpms force off")
     end)
 )
 
