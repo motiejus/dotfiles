@@ -1,8 +1,9 @@
 *~
 *.sw[op]
-/vim/.vim/tags
-/vim/.vim/ctags/
-/vim/.vim/view/
-/vim/.vim/.netrwhist
 /ctags/.rusty-tags/cache
 /ctags/.rusty-tags/locks
+/vim/.vim/.netrwhist
+/vim/.vim/ctags/
+/vim/.vim/spell/*.spl
+/vim/.vim/tags
+/vim/.vim/view/
