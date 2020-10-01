@@ -1,6 +1,8 @@
 export GPG_SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
+export PATH=$PATH:$HOME/bin
+
 nm-applet &
 blueman-applet &
 pnmixer &
