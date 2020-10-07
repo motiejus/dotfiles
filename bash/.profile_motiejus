@@ -45,7 +45,6 @@ export MONOREPO_GOPATH_MODE=1
 
 export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
-alias cerberus='cerberus --zone phx2 --no-status-page'
 alias gp='git remote | parallel --verbose git push'
 alias gf='git remote | parallel --verbose git fetch'
 
