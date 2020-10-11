@@ -16,6 +16,11 @@ nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR
 set laststatus=2 wildmenu scrolloff=1 sidescrolloff=5 display+=lastline encoding=utf-8
 set formatoptions+=j history=1000 tabpagemax=50 sessionoptions-=options
 
+" so Gdiff and vimdiff output are somewhat readable
+if &diff
+    syntax off
+endif
+
 if has("patch-8.1-0360")
   set diffopt+=algorithm:patience
 endif
