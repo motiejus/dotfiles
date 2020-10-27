@@ -65,3 +65,6 @@ au FileType yaml set ts=2 sw=2
 
 " sql
 au FileType sql setlocal formatprg=pg_format\ -
+
+" mail
+autocmd BufRead,BufNewFile *mutt-* setfiletype mail
