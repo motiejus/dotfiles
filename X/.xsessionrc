@@ -7,6 +7,4 @@ nm-applet &
 blueman-applet &
 pnmixer &
 compton --daemon
-xscreensaver -no-splash &
-xss-lock -- xscreensaver-command -lock &
-#xss-lock -- i3lock --ignore-empty-password --pointer win --color=3a6ea5 &
+xss-lock -- slock xset dpms force off &

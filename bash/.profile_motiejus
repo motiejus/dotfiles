@@ -51,12 +51,6 @@ alias gf='git remote | parallel --verbose git fetch'
 export UBER_HOME=/home/motiejus/Uber
 export UBER_OWNER=motiejus@uber.com
 
-bazel() {
-    arg1=$1
-    shift
-    env bazel "$arg1" --color=yes "$@" 3>&1 1>&2 2>&3 | grep -Ev 'DEBUG: .*401 Unauthorized$'
-}
-
 secret () {
         output=~/"${1}".$(date +%s).enc
         gpg --encrypt --armor --output "${output}" -r motiejus@jakstys.lt "${1}" && echo "${1} -> ${output}"
