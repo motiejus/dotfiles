@@ -7,3 +7,5 @@
 /vim/.vim/spell/*.spl
 /vim/.vim/tags
 /vim/.vim/view/
+
+/mail/.cache/mutt/
