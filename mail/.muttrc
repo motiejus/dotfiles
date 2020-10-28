@@ -49,8 +49,7 @@ bind index,pager \Co sidebar-open
 bind index,pager B sidebar-toggle-visible
 set sidebar_short_path = yes
 set sidebar_delim_chars = '/'
-#set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
-#set sidebar_format = '%B%* %?N?%N'
+set sidebar_format = '%B%* %?N?%N?'
 
 macro index <F8> \
 "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
