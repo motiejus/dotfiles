@@ -7,4 +7,5 @@ nm-applet &
 blueman-applet &
 pnmixer &
 compton --daemon
+pidgin &
 xss-lock -- slock xset dpms force off &
