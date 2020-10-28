@@ -2,7 +2,7 @@ IMAPAccount desired.mta_gmail
 # Address to connect to
 Host imap.gmail.com
 User desired.mta@gmail.com
-PassCmd "cat .email.txt"
+PassCmd "cat ~/.email.txt"
 # Use SSL
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -20,7 +20,7 @@ Channel desired_mta.gmail
 Master :gmail-remote:
 Slave :gmail-local:
 # Exclude everything under the internal [Gmail] folder, except the interesting folders
-Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred"
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/Drafts"
 # Or include everything
 #Patterns *
 # Automatically create missing mailboxes, both locally and on the server
