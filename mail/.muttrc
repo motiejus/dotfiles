@@ -19,7 +19,15 @@ mailboxes \
     +wireguard  \
     "+[Gmail]/Sent Mail"  \
     "+[Gmail]/Starred"  \
-    "+[Gmail]/Drafts"
+    "+[Gmail]/Drafts" \
+    "+[Gmail]/Spam" \
+    "+[Gmail]/Chats"
+
+set sendmail="/usr/bin/msmtp"
+set use_from=yes
+set realname="Motiejus Jakštys"
+set from=motiejus.jakstys@gmail.com
+set envelope_from=yes
 
 set mailcap_path = ~/.mutt/mailcap
 auto_view text/html
