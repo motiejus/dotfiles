@@ -48,6 +48,7 @@ bind attach,index,pager \CU half-up
 bind attach,index,pager \Ce next-line
 bind attach,index,pager \Cy previous-line
 bind index,pager B sidebar-toggle-visible
+bind index,pager R group-reply
 
 set sidebar_visible = yes
 set sidebar_width = 15
