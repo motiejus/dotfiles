@@ -31,7 +31,7 @@ set envelope_from=yes
 
 # default:
 #   index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
-set index_format="%4C %Z %{%F %T} %-15.15L (%?l?%4l&%4c?) %s"
+set index_format="%4C %Z %{%F %H:%M} %-15.15L (%?l?%4l&%4c?) %s"
 
 set mailcap_path = ~/.mutt/mailcap
 auto_view text/html
