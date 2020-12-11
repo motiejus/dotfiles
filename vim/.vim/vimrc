@@ -66,6 +66,8 @@ au FileType yaml set ts=2 sw=2
 " sql
 au FileType sql setlocal formatprg=pg_format\ -
 au FileType sql set ts=2 sw=2 sws=2
+let g:loaded_sql_completion = 0
+let g:ftplugin_sql_omni_key = '<Plug>DisableSqlOmni'
 
 " mail
 autocmd BufRead,BufNewFile *mutt-* setfiletype mail

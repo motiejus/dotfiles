@@ -47,7 +47,7 @@ export UBER_PROFILE_UID=motiejus
 export UBER_LDAP_UID=motiejus
 alias gp='git remote | parallel --verbose git push'
 alias gf='git remote | parallel --verbose git fetch'
-alias kal='ncal -M'
+alias kal='khal calendar'
 alias m=neomutt
 
 export UBER_HOME=/home/motiejus/Uber
