@@ -10,6 +10,11 @@ let g:gutentags_generate_on_new = 0
 let g:gutentags_cache_dir = '~/.vim/ctags'
 let b:gutentags_file_list_command = 'git ls-files'
 
+" thanks to drew de vault
+set cc=80
+set backupdir=~/.cache directory=~/.cache
+nnoremap Q <Nop>
+
 " bits from vim-sensible
 set autoindent smarttab nrformats-=octal
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
@@ -41,6 +46,9 @@ au FileType puppet let g:gutentags_enabled = 1
 au FileType puppet let b:gutentags_file_list_command = 'git ls-files *.pp'
 au FileType puppet nnoremap <buffer> <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>vE<C-]>
 "au FileType puppet nnoremap <buffer> <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>:call search('[^a-z:]\|$', 's')<cr>hv`'<C-]>
+
+" puppet
+au BufRead,BufNewFile *.j2 setfiletype django
 
 " avro
 au BufRead,BufNewFile *.avsc setfiletype json
