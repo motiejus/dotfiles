@@ -10,8 +10,9 @@ let g:gutentags_generate_on_new = 0
 let g:gutentags_cache_dir = '~/.vim/ctags'
 let b:gutentags_file_list_command = 'git ls-files'
 
+call matchadd('ColorColumn', '\%80v', 100)
 " thanks to drew de vault
-set cc=80
+set mouse=a
 set backupdir=~/.cache directory=~/.cache
 nnoremap Q <Nop>
 
@@ -75,7 +76,7 @@ au FileType yaml set ts=2 sw=2
 au FileType sql setlocal formatprg=pg_format\ -
 au FileType sql set ts=2 sw=2 sws=2
 let g:loaded_sql_completion = 0
-let g:ftplugin_sql_omni_key = '<Plug>DisableSqlOmni'
+let g:omni_sql_no_default_maps = 1
 
 " mail
 autocmd BufRead,BufNewFile *mutt-* setfiletype mail
