@@ -29,14 +29,6 @@ for path in \
     fi
 done
 
-toolshed() {
-    local ti="-i"
-    if [[ -t 0 ]]; then
-        local ti="-ti"
-    fi
-    docker run --init --name toolshed -v `pwd`:/x -w /x "$ti" --rm motiejus/toolshed "$@"
-}
-
 nman() {
     nvim +"Man $*" +on
 }
@@ -50,7 +42,6 @@ export UBER_LDAP_UID=motiejus
 alias gp='git remote | parallel --verbose git push'
 alias gf='git remote | parallel --verbose git fetch'
 alias kal='khal calendar'
-alias m=neomutt
 
 export UBER_HOME=/home/motiejus/Uber
 export UBER_OWNER=motiejus@uber.com

@@ -10,8 +10,8 @@ let g:gutentags_generate_on_new = 0
 let g:gutentags_cache_dir = '~/.vim/ctags'
 let b:gutentags_file_list_command = 'git ls-files'
 
-call matchadd('ColorColumn', '\%80v', 100)
-" thanks to drew de vault
+call matchadd('ColorColumn', '\%81v', 100)
+" thanks to drew de vault's vimrc, except swearing
 set mouse=a
 set backupdir=~/.cache directory=~/.cache
 nnoremap Q <Nop>
@@ -62,7 +62,7 @@ au FileType go let g:go_template_autocreate = 0
 au FileType go let g:go_fmt_command = "goimports"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = {
-    \ 'goimports': '-local selector,inventory,gopkg.in,google.golang.org,code.uber.internal,thriftrw,thrift,gogoproto,go.uber.org,golang.org,github.com,mock',
+    \ 'goimports': '-local selector,inventory,gopkg.in,google.golang.org,code.uber.internal,thriftrw,thrift,gogoproto,go.uber.org,golang.org,github.com,mock,git.sr.ht',
     \ }
 let $USEGO111MODULE="off"
 
