@@ -23,6 +23,7 @@ for path in \
     /sbin \
     /usr/sbin \
     $HOME/bin \
+    /usr/local/go/bin \
     ; do
     if [[ ! $PATH =~ $path ]]; then
         export PATH=$path:$PATH
