@@ -7,4 +7,5 @@ nm-applet &
 blueman-applet &
 pnmixer &
 compton --daemon
+kdeconnect-indicator &
 xss-lock -- slock xset dpms force off &

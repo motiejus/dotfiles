@@ -14,7 +14,8 @@ call matchadd('ColorColumn', '\%81v', 100)
 " thanks to drew de vault's vimrc, except swearing
 set mouse=a
 set backupdir=~/.cache directory=~/.cache
-nnoremap Q <Nop>
+"nnoremap Q :grep <cword><CR>
+nmap gs :grep <cursor><CR>
 
 " bits from vim-sensible
 set autoindent smarttab nrformats-=octal
@@ -30,6 +31,8 @@ endif
 if has("patch-8.1-0360")
   set diffopt+=algorithm:patience
 endif
+
+"nmap gs :rg :grep <cword>
 
 " html
 au FileType html setlocal ts=2 sw=2 sws=2
