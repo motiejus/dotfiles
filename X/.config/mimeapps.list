@@ -1,5 +1,6 @@
 [Added Associations]
 application/pdf=org.gnome.Evince.desktop;
+application/x-research-info-systems=gvim.desktop;
 
 [Default Applications]
 x-scheme-handler/msteams=teams.desktop
