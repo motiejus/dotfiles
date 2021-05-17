@@ -35,4 +35,6 @@ ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 CommandLoginShell=TRUE
 ScrollingOnOutput=FALSE
+RunCustomCommand=TRUE
+CustomCommand=tmuxbash
 
