@@ -1,6 +1,6 @@
 syntax on
 filetype plugin indent on
-set et ts=4 sw=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
+set et ts=4 sw=4 sws=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
 set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m backspace=2 nojs
 set laststatus=1
 nnoremap <Leader>\ gqj
@@ -36,7 +36,7 @@ endif
 "nmap gs :rg :grep <cword>
 
 " html
-au FileType html setlocal ts=2 sw=2 sws=2
+au FileType html setlocal ts=2 sw=2 sts=2
 
 " ruby
 au BufRead,BufNewFile Vagrantfile setfiletype ruby
@@ -46,7 +46,7 @@ au BufRead,BufNewFile *.star setfiletype python
 
 " puppet
 au BufRead,BufNewFile *.pp setfiletype puppet
-au FileType puppet setlocal ts=2 sw=2 sws=2 syntax=ruby
+au FileType puppet setlocal ts=2 sw=2 sts=2 syntax=ruby
 au FileType puppet let g:gutentags_enabled = 1
 au FileType puppet let b:gutentags_file_list_command = 'git ls-files *.pp'
 au FileType puppet nnoremap <buffer> <C-]> :call search('\s', 'b')<cr>:call search('\w')<cr>vE<C-]>
@@ -57,7 +57,7 @@ au BufRead,BufNewFile *.j2 setfiletype django
 
 " avro
 au BufRead,BufNewFile *.avsc setfiletype json
-au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sws=2
+au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sts=2
 
 " go
 au FileType go setlocal noet
@@ -74,11 +74,11 @@ let $USEGO111MODULE="off"
 au FileType strace setlocal nonu
 
 " yaml
-au FileType yaml setlocal ts=2 sw=2
+au FileType yaml setlocal ts=2 sw=2 sts=2
 
 " sql
 au FileType sql setlocal formatprg=pg_format\ -
-au FileType sql setlocal ts=2 sw=2 sws=2
+au FileType sql setlocal ts=2 sw=2 sts=2
 let g:loaded_sql_completion = 0
 let g:omni_sql_no_default_maps = 1
 
@@ -86,4 +86,4 @@ let g:omni_sql_no_default_maps = 1
 autocmd BufRead,BufNewFile *mutt-* setfiletype mail
 
 " TeX
-au FileType tex setlocal spell spelllang=en_us
+au FileType tex setlocal spell spelllang=en_us ts=2 sw=2 sts=2
