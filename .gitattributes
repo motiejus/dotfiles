@@ -1,6 +1,4 @@
-# ssh
-id_ed25519 filter=git-crypt diff=git-crypt
-
 # diffing binary blobs
 trustdb.gpg diff=trustdb
 *.docx diff=pandocdiff
+pubring.kbx diff=pubringkbx
