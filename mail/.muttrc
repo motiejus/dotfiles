@@ -22,7 +22,7 @@ mailboxes \
 set sendmail="/usr/bin/msmtp"
 set use_from=yes
 set realname="Motiejus Jakštys"
-set from=motiejus.jakstys@gmail.com
+set from=motiejus@jakstys.lt
 set envelope_from=yes
 
 # default:

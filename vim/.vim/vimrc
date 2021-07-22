@@ -66,7 +66,7 @@ au FileType go let g:go_template_autocreate = 0
 au FileType go let g:go_fmt_command = "goimports"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_options = {
-    \ 'goimports': '-local selector,inventory,gopkg.in,google.golang.org,code.uber.internal,thriftrw,thrift,gogoproto,go.uber.org,golang.org,github.com,mock,git.sr.ht,go.etcd.io',
+    \ 'goimports': '-local selector,bindata,gen,inventory,gopkg.in,google.golang.org,code.uber.internal,thriftrw,thrift,gogoproto,go.uber.org,golang.org,github.com,mock,git.sr.ht,go.etcd.io',
     \ }
 let $USEGO111MODULE="off"
 

@@ -16,3 +16,5 @@
     smtpServer = smtp.gmail.com
     smtpUser = desired.mta@gmail.com
     smtpServerPort = 587
+[alias]
+	yolo = commit --amend --no-edit -a
