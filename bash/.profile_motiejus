@@ -35,6 +35,7 @@ nman() {
 }
 
 [[ -f $HOME/.gg.sh ]] && . $HOME/.gg.sh
+[[ -f $HOME/.cargo/env ]] && . $HOME/.cargo/env
 export MONOREPO_GOPATH_MODE=1
 
 export UBER_PROFILE_UID=motiejus

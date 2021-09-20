@@ -18,3 +18,5 @@
     smtpServerPort = 587
 [alias]
 	yolo = commit --amend --no-edit -a
+[init]
+	defaultBranch = main
