@@ -36,7 +36,7 @@ endif
 "nmap gs :rg :grep <cword>
 
 " html
-au FileType html setlocal ts=2 sw=2 sts=2
+au FileType html,gohtmltmpl setlocal ts=2 sw=2 sts=2
 
 " ruby
 au BufRead,BufNewFile Vagrantfile setfiletype ruby
@@ -58,6 +58,9 @@ au BufRead,BufNewFile *.j2 setfiletype django
 " avro
 au BufRead,BufNewFile *.avsc setfiletype json
 au BufRead,BufNewFile *.avsc setlocal ts=2 sw=2 sts=2
+
+" redo
+au BufRead,BufNewFile *.do setfiletype sh
 
 " go
 au FileType go setlocal noet
