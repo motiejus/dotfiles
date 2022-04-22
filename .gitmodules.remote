@@ -1,0 +1,18 @@
+[submodule "vim/.vim/pack/plugins/vim-fugitive"]
+	path = vim/.vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim/.vim/pack/plugins/vim-gutentags"]
+	path = vim/.vim/pack/plugins/start/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "vim/.vim/pack/plugins/start/vim-go"]
+	path = vim/.vim/pack/plugins/start/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "vim/.vim/pack/plugins/start/VOoM"]
+	path = vim/.vim/pack/plugins/start/VOoM
+	url = https://github.com/vim-voom/VOoM
+[submodule "vim/.vim/pack/plugins/start/vim-latex-folding"]
+	path = vim/.vim/pack/plugins/start/vim-latex-folding
+	url = https://github.com/Eckankar/vim-latex-folding
+[submodule "vim/.vim/pack/plugins/start/zig.vim"]
+	path = vim/.vim/pack/plugins/start/zig.vim
+	url = https://github.com/ziglang/zig.vim
