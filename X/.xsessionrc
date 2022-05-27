@@ -1,14 +1,15 @@
-export GPG_SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+#export GPG_SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#gpgconf --launch gpg-agent
+#
+#export PATH=$PATH:$HOME/bin
+#
+#xrdb -merge ~/.Xresources
+#
+#nm-applet &
+#blueman-applet &
+#pnmixer &
+#compton --daemon
+#kdeconnect-indicator &
 
-export PATH=$PATH:$HOME/bin
-
-xrdb -merge ~/.Xresources
-
-nm-applet &
-blueman-applet &
-pnmixer &
-compton --daemon
-kdeconnect-indicator &
 xss-lock -- slock xset dpms force off &
 autorandr -c
