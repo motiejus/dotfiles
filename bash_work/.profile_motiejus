@@ -1,0 +1,59 @@
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+if [[ $HOSTNAME == mtpad ]]; then
+  export PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
+fi
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+#export CLICOLOR=y
+export HISTSIZE=50000
+export GOTRACEBACK=all
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+eval "$(direnv hook bash)"
+export DIRENV_LOG_FORMAT=""
+export CLUSTODSN=postgresql://clusto:clusto@127.0.0.1:5432/clusto
+export EDITOR=vim
+#export GOPATH=$HOME/.gopath
+
+export DEBUGINFOD_URLS="https://debuginfod.debian.net"
+
+ulimit -Sn 10240
+
+for path in \
+    /sbin \
+    /usr/sbin \
+    $HOME/bin \
+    /usr/local/go/bin \
+    ; do
+    if [[ ! $PATH =~ $path ]]; then
+        export PATH=$path:$PATH
+    fi
+done
+
+nman() {
+    nvim +"Man $*" +on
+}
+
+[[ -f $HOME/.gg.sh ]] && . $HOME/.gg.sh
+[[ -f $HOME/.cargo/env ]] && . $HOME/.cargo/env
+export MONOREPO_GOPATH_MODE=1
+
+export UBER_PROFILE_UID=motiejus
+export UBER_LDAP_UID=motiejus
+alias gp='git remote | parallel --verbose git push'
+alias gf='git remote | parallel --verbose git fetch'
+alias kal='khal calendar'
+alias l='echo -n ł | xclip -selection clipboard'
+
+export UBER_HOME=/home/motiejus/Uber
+export UBER_OWNER=motiejus@uber.com
+
+secret () {
+        output=~/"${1}".$(date +%s).enc
+        gpg --encrypt --armor --output "${output}" -r motiejus@jakstys.lt "${1}" && echo "${1} -> ${output}"
+}
+
+reveal () {
+        output=$(echo "${1}" | rev | cut -c16- | rev)
+        gpg --decrypt --output "${output}" "${1}" && echo "${1} -> ${output}"
+}
