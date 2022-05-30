@@ -3,7 +3,9 @@ gpgconf --launch gpg-agent
 
 export PATH=$PATH:$HOME/bin
 
-xrdb -merge ~/.Xresources
+if [[ false ]]; then
+    xrdb -merge ~/.Xresources
+fi
 
 nm-applet &
 blueman-applet &
