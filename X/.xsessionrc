@@ -1,11 +1,11 @@
 export GPG_SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-export PATH=$PATH:$HOME/bin
-
 if [[ false ]]; then
-    xrdb -merge ~/.Xresources
+    xrdb -merge $HOME/.Xresources
 fi
+
+. $HOME/.profile
 
 nm-applet &
 blueman-applet &
