@@ -8,7 +8,11 @@ fi
 . $HOME/.profile
 
 nm-applet &
-blueman-applet &
+
+if [ $(hostname) != motiejus-20NYS8QG0B ]; then
+  blueman-applet &
+fi
+
 pnmixer &
 compton --daemon
 kdeconnect-indicator &
