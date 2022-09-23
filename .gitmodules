@@ -1,6 +1,6 @@
 [submodule "vim/.vim/pack/plugins/start/zig.vim"]
 	path = vim/.vim/pack/plugins/start/zig.vim
-	url = https://github.com/ziglang/zig.vim
+	url = .
 [submodule "vim/.vim/pack/plugins/start/vim-fugitive"]
 	path = vim/.vim/pack/plugins/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
+	url = .
