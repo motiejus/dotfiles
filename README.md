@@ -21,9 +21,8 @@ On a clean tree:
     $ git diff  # make sure no submodules are missed
     $ git submodule foreach git pull
     $ git checkout -- .gitmodules
-    $ git add .
-    $ git commit -m "update submodules"
-    $ git subtrac --auto-exclude update
+    $ git commit -am "update submodules"
+    $ git subtrac update
     $ git push origin master master.trac
 
 ... and update this README when some of the steps turn out to be
