@@ -1,3 +1,7 @@
+if $VIM_PATH != ""
+        let $PATH = $VIM_PATH
+endif
+
 syntax on
 filetype plugin indent on
 set et ts=4 sw=4 sws=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
