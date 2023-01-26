@@ -4,3 +4,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-fugitive"]
 	path = vim/.vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/.vim/pack/plugins/start/nvim-lspconfig"]
+	path = vim/.vim/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig

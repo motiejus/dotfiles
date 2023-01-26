@@ -6,4 +6,4 @@
 	url = .
 [submodule "vim/.vim/pack/plugins/start/nvim-lspconfig"]
 	path = vim/.vim/pack/plugins/start/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig
+	url = .
