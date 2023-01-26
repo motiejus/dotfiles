@@ -57,3 +57,7 @@ reveal () {
         output=$(echo "${1}" | rev | cut -c16- | rev)
         gpg --decrypt --output "${output}" "${1}" && echo "${1} -> ${output}"
 }
+
+export BORG_PASSCOMMAND='env PASSWORD_STORE_DIR=/code/config pass secrets/hel1-a/borgbackup/password'
+export BORG_REMOTE_PATH=borg1
+export BORG_REPO=zh2769@zh2769.rsync.net:borg
