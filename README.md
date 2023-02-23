@@ -8,6 +8,7 @@ Split into 3 parts:
 Dotfiles in $HOME
 -----------------
 
+    $ git config protocol.file.allow always
     $ git clone --recursive git@github.com:motiejus/dotfiles.git .dotfiles
     $ cd .dotfiles
     $ stow bash ctags tmux vim

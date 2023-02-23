@@ -21,3 +21,5 @@
 	yolo = commit --amend --no-edit -a
 [init]
 	defaultBranch = main
+[protocol "file"]
+	allow = always
