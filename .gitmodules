@@ -1,3 +1,9 @@
+[submodule "vim/.vim/pack/plugins/start/zig2.vim"]
+	path = vim/.vim/pack/plugins/start/zig2.vim
+	url = .
+[submodule "vim/.vim/pack/plugins/start/vim-fugitive2"]
+	path = vim/.vim/pack/plugins/start/vim-fugitive2
+	url = .
 [submodule "vim/.vim/pack/plugins/start/nvim-lspconfig"]
 	path = vim/.vim/pack/plugins/start/nvim-lspconfig
 	url = .

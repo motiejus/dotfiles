@@ -1,8 +1,8 @@
-[submodule "vim/.vim/pack/plugins/start/zig.vim"]
-	path = vim/.vim/pack/plugins/start/zig.vim
+[submodule "vim/.vim/pack/plugins/start/zig2.vim"]
+	path = vim/.vim/pack/plugins/start/zig2.vim
 	url = https://github.com/ziglang/zig.vim
-[submodule "vim/.vim/pack/plugins/start/vim-fugitive"]
-	path = vim/.vim/pack/plugins/start/vim-fugitive
+[submodule "vim/.vim/pack/plugins/start/vim-fugitive2"]
+	path = vim/.vim/pack/plugins/start/vim-fugitive2
 	url = https://github.com/tpope/vim-fugitive
 [submodule "vim/.vim/pack/plugins/start/nvim-lspconfig"]
 	path = vim/.vim/pack/plugins/start/nvim-lspconfig
