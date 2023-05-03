@@ -2,3 +2,5 @@ eval "$(direnv hook bash)"
 alias gp='git remote | parallel --verbose git push'
 alias kal='khal calendar'
 alias l='echo -n ł | xclip -selection clipboard'
+
+export GOPATH=$HOME/.go

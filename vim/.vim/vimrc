@@ -4,7 +4,7 @@ endif
 
 syntax on
 filetype plugin indent on
-set et ts=4 sw=4 sws=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
+set et ts=4 sw=4 sts=4 nu hlsearch ruler ignorecase smartcase nomodeline bg=dark incsearch
 set path=**/* grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m backspace=2 nojs
 set laststatus=1
 nnoremap <Leader>\ gqj
@@ -71,11 +71,6 @@ au FileType go setlocal noet
 au FileType go nnoremap <buffer> <C-]> :GoDef<CR>
 au FileType go let g:go_template_autocreate = 0
 au FileType go let g:go_fmt_command = "goimports"
-let g:go_fmt_command = "goimports"
-let g:go_fmt_options = {
-    \ 'goimports': '-local selector,bindata,gen,inventory,gopkg.in,google.golang.org,code.uber.internal,thriftrw,thrift,gogoproto,go.uber.org,golang.org,github.com,mock,git.sr.ht,go.etcd.io',
-    \ }
-let $USEGO111MODULE="off"
 
 " strace
 au FileType strace setlocal nonu

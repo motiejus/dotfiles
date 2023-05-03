@@ -1,15 +1,13 @@
-export GPG_SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-eval $(ssh-agent)
+#eval $(ssh-agent)
 
 if false ; then
     xrdb -merge $HOME/.Xresources
 fi
 
-if [ $(hostname) != motiejus-20NYS8QG0B ]; then
-  blueman-applet &
-fi
+blueman-applet &
 
 . $HOME/.profile
 
