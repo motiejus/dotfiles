@@ -23,3 +23,7 @@
 	defaultBranch = main
 [protocol "file"]
 	allow = always
+[rerere]
+	enabled = true
+[merge]
+	conflictstyle = diff3
