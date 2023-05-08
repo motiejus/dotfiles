@@ -9,4 +9,4 @@
 	url = .
 [submodule "vim/.vim/pack/plugins/start/vim-go"]
 	path = vim/.vim/pack/plugins/start/vim-go
-	url = https://github.com/fatih/vim-go.git
+	url = .
