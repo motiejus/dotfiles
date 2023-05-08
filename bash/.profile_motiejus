@@ -4,3 +4,4 @@ alias kal='khal calendar'
 alias l='echo -n ł | xclip -selection clipboard'
 
 export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH
